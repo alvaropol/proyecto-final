@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <style type="text/css">
+    body {
+      background-color: rgb(224, 51, 51);
+      font-family: 'MonteCatini', sans-serif;
+    }
+
+    @font-face {
+      font-family: 'MonteCatini';
+      src: url('../fonts/montecatini.ttf');
+    }
+
+    nav {
+      font-size: 15pt;
+    }
+
+    .redes {
+      margin: 0 auto;
+      color: white;
+    }
+
+    .redes a {
+      font-size: 20pt;
+    }
+
+    .redes i:hover {
+      color: rgb(240, 102, 102);
+    }
+
+    footer {
+      background-color: rgb(224, 51, 51);
+
+    }
+
+    .container1 {
+      color: white;
+    }
+
+    img {
+      padding: 15px;
+    }
+
+    form {
+      color: white;
+      width: 80%;
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+
+    legend {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="inicio.html">
+                <img src="../img/escudo.png" alt="Escudo del Sevilla FC" style="width: 190px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="socio.html">Socios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tienda.html">Tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="partidos.html">Partidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="noticias.html">Noticias</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">Más</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="https://shop.sevillafc.es/pages/aviso-legal">Aviso
+                                Legal</a>
+                            <a class="dropdown-item" href="clasificacion.html">Clasificación</a>
+                            <a class="dropdown-item" href="https://sevillafc.es/el-club/historia">Historia de
+                                nuestro
+                                equipo</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="contacta.html">Contacta con nosotros</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+  <h1 class="fw-light text-center text-white mt-4 mb-0">¡Hazte socio y únete al club!</h1>
+
+  <hr>
+  <div class="precios text-center mt-5">
+    <p class="text-white">Precios:</p>
+    <p class="text-white">Socio rojo - 89€</p>
+    <p class="text-white">Socio rojo menor de 21 - 55€</p>
+    <p class="text-white">Socio rojo menor de 5 - 50€ </p>
+  </div>
+
+  <div class="text-center">
+    <img class="w-75" src="../img/carnet.jpg" alt="Carnet del Sevilla FC">
+  </div>
+
+  <form>
+    <fieldset>
+      <legend>Datos personales</legend>
+
+      <div class="form-group">
+        <label for="exampleInputName" class="form-label mt-4">Nombre</label>
+        <input type="text" class="form-control" id="exampleInputName" required aria-describedby="nameHelp"
+          placeholder="Escriba aquí su nombre">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputApellido1" class="form-label mt-4">Primer apellido</label>
+        <input type="text" class="form-control" id="exampleInputApellido1" required aria-describedby="apellido1Help"
+          placeholder="Escriba aquí su primer apellido">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputApellido2" class="form-label mt-4">Segundo apellido</label>
+        <input type="text" class="form-control" id="exampleInputApellido2" required aria-describedby="apellido2Help"
+          placeholder="Escriba aquí su segundo apellido">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputNacimiento" class="form-label mt-4">Fecha de nacimiento</label>
+        <input type="date" class="form-control" id="exampleInputNacimiento" required aria-describedby="nacimientoHelp">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputDNI" class="form-label mt-4">DNI/PASAPORTE</label>
+        <input type="text" class="form-control" maxlength="9" id="exampleInputDNI" required aria-describedby="DNIHelp"
+          placeholder="Escriba aquí su DNI">
+      </div>
+
+      <div class="alert alert-info mt-4">
+        <p><strong>¡ATENCIÓN! Si eres menor de 16 y aún no tienes DNI, introduce 00000000T</strong></p>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label mt-4">Dirección de correo</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" required aria-describedby="emailHelp"
+          placeholder="EMAIL">
+        <small id="emailHelp" class="form-text text-dark info">NUNCA COMPARTIREMOS TU DIRECCIÓN DE
+          CORREO</small>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputTel" class="form-label mt-4">Teléfono</label>
+        <input type="tel" class="form-control" id="exampleInputTel" required placeholder="Telefono">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputPais" class="form-label mt-4">País</label>
+        <input type="text" class="form-control" id="exampleInputPais" required aria-describedby="paisHelp"
+          placeholder="Escriba aquí su país">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputProvincia" class="form-label mt-4">Provincia</label>
+        <input type="text" class="form-control" id="exampleInputProvincia" required aria-describedby="provinciaHelp"
+          placeholder="Escriba aquí su provincia">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputLocalidad" class="form-label mt-4">Localidad</label>
+        <input type="text" class="form-control" id="exampleInputLocalidad" required aria-describedby="localidadHelp"
+          placeholder="Escriba aquí su localidad">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputCalle" class="form-label mt-4">Calle</label>
+        <input type="text" class="form-control" id="exampleInputCalle" required aria-describedby="calleHelp"
+          placeholder="Escriba aquí su calle">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputCod" class="form-label mt-4">Código postal</label>
+        <input type="text" class="form-control" id="exampleInputCod" required aria-describedby="codHelp"
+          placeholder="Escriba aquí su código postal">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputNumEscPis" class="form-label mt-4">Número/Escalera/Piso</label>
+        <input type="text" class="form-control" id="exampleInputNumEscPis" required aria-describedby="numescpisHelp"
+          placeholder="Escriba aquí el número/escalera/piso de su calle">
+      </div>
+
+
+      <fieldset class="form-group">
+        <legend class="mt-4">¿Cómo desea obtener su carnet físico?</legend>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="optionCarnet" id="optionsPagos1" value="option1"
+            checked="">
+          <label class="form-check-label" for="optionsCarnet1">
+            Deseo recogerlo en las oficinas del club.
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="optionCarnet" id="optionsCarnet2" value="option2">
+          <label class="form-check-label" for="optionsCarnet2">
+            Deseo recibirlo en mi domicilio (España)
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-group">
+        <legend class="mt-4">Método de pago</legend>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="optionpago" id="optionsPagos1" value="option1" checked="">
+          <label class="form-check-label" for="optionsPagos1">
+            TARJETA DE CRÉDITO
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="optionpago" id="optionsPagos2" value="option2">
+          <label class="form-check-label" for="optionsPagos2">
+            BIZUM
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="optionpago" id="optionsPagos3" value="option3">
+          <label class="form-check-label" for="optionsPagos3">
+            PAYPAL
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="optionpago" id="optionsPagos4" value="option4">
+          <label class="form-check-label" for="optionsPagos4">
+            EFECTIVO EN OFICINAS
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="alert alert-info mt-4">
+        <p><strong>¡ATENCIÓN! SI SELECCIONA EL MÉTODO DE PAGO "EFECTIVO EN OFICINAS DEBERÁ TENDRÁ UN PLAZO DE 7 DÍAS
+            PARA ABONAR LA CANTIDAD CORRESPONDIENTE, DE LO CONTRARIO SE LE CANCELARÁ LA SOLICITUD DE SOCIO
+          </strong> </p>
+      </div>
+      <button type="submit" class="btn btn-danger">Hacerme socio</button>
+    </fieldset>
+  </form>
+
+</main>
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start  text-muted">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+
+      <div class="redes">
+        <a href="https://www.facebook.com/sevillafc/?locale=es_ES" target="_blank" class="me-4 text-white"><i
+            class="bi bi-facebook"></i></a>
+        <a href="https://twitter.com/SevillaFC?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"
+          class="me-4 text-white"><i class="bi bi-twitter"></i></a>
+        <a href="https://sevillafc.es/" target="_blank" class="me-4 text-white"> <i class="bi bi-google"></i></a>
+        <a href="https://www.instagram.com/sevillafc/?hl=es" target="_blank" class="me-4 text-white"> <i
+            class="bi bi-instagram"></i></a>
+        <a href="https://www.youtube.com/sevillafc" target="_blank" class="me-4 text-white"><i
+            class="bi bi-youtube"></i></a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section>
+      <div class="container1 text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3 w-100">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3.5 mx-auto mb-4">
+            <img src="../img/cruzc.png" alt="Cruzcampo" width="30%">
+            <img src="../img/robles.png" alt="Robles Restaurantes" width="30%">
+            <img src="../img/scalpers.png" alt="Scalpers" width="30%">
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-4">
+              Equipo
+            </h6>
+            <p>
+              <a href="partidos.html" class="text-reset">Entradas</a>
+            </p>
+            <p>
+              <a href="noticias.html" class="text-reset">Noticias</a>
+            </p>
+            <p>
+              <a href="https://www.sevillafc.es/tour-sevillafc?_ga=2.8427189.1273339710.1678729368-1886558505.1678729368"
+                class="text-reset">Tour Sanchéz-Pizjuán</a>
+            </p>
+            <p>
+              <a href="https://shop.sevillafc.es/?utm_source=sevillafc.es&utm_medium=referral&utm_campaign=web_sfc&utm_content=menu_footer_home_es&_ga=2.15941302.1273339710.1678729368-1886558505.1678729368"
+                class="text-reset">Tienda</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-4">
+              Políticas
+            </h6>
+            <p>
+              <a href="https://sevillafc.es/aviso-legal" class="text-reset">Aviso Legal</a>
+            </p>
+            <p>
+              <a href="https://sevillafc.es/politica-de-cookies" class="text-reset">Cookies</a>
+            </p>
+            <p>
+              <a href="https://sevillafc.es/politica-privacidad" class="text-reset">Privacidad</a>
+            </p>
+            <p>
+              <a href="https://sevillafc.es/mapa-web" class="text-reset">Mapa Web</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-4">Contacto</h6>
+            <p><i class="fas fa-home me-3"></i>Estadio Ramón Sánchez-Pizjuán C/ Sevilla Fútbol Club</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              sevillafc@gmail.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> + 34 434 544 23</p>
+
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4 text-white" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2023 Sevilla FC SAD:
+      <a class="text-reset fw-bold" href="https://live.sevillafc.es/derecho-informacion">Derechos reservados</a>
+    </div>
+
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+</body>
+
+</html>

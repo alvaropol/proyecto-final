@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <style type="text/css">
+    body {
+      background-color: rgb(224, 51, 51);
+      font-family: 'MonteCatini', sans-serif;
+    }
+
+    @font-face {
+      font-family: 'MonteCatini';
+      src: url('../fonts/montecatini.ttf');
+    }
+
+    nav {
+      font-size: 15pt;
+    }
+
+    .redes {
+      margin: 0 auto;
+      color: white;
+    }
+
+    .redes a {
+      font-size: 20pt;
+    }
+
+    .redes i:hover {
+      color: rgb(240, 102, 102);
+    }
+
+    footer {
+      background-color: rgb(224, 51, 51);
+
+    }
+
+    .container1 {
+      color: white;
+    }
+
+    img {
+      padding: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="inicio.html">
+                <img src="../img/escudo.png" alt="Escudo del Sevilla FC" style="width: 190px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="socio.html">Socios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tienda.html">Tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="partidos.html">Partidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="noticias.html">Noticias</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">Más</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="https://shop.sevillafc.es/pages/aviso-legal">Aviso
+                                Legal</a>
+                            <a class="dropdown-item" href="clasificacion.html">Clasificación</a>
+                            <a class="dropdown-item" href="https://sevillafc.es/el-club/historia">Historia de
+                                nuestro
+                                equipo</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="contacta.html">Contacta con nosotros</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+  <!--Main layout-->
+  <div class="container">
+    <!--Section: News of the day-->
+    <section class="border-bottom pb-4 mb-5">
+      <div class="row gx-5">
+        <div class="col-md-6 mb-4">
+          <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+            <img src="../img/entrenamiento.jpeg" class="img-fluid" />
+            <a href="#">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <span class="badge bg-danger px-2 py-1 shadow-1-strong fs-6 mb-3">Noticia del día</span>
+          <h4><strong>El Sevilla FC termina de preparar la cita europea antes del viaje a Turquía</strong></h4>
+          <p class="text-white">Los nervionenses trabajaron en la ciudad deportiva este miércoles en la previa del
+            desplazamiento europeo para medirse ante el Fenerbahçe procedente de Turquía</p>
+          <p class="text-white">Para este encuentro, el técnico de Casilda ofreció este martes una lista de convocados
+            con las novedades de Montiel y Fernando con respecto a la pasada cita liguera ante la UD Almería.</p>
+          <button type="button" class="btn bg-danger text-white"><a class="text-decoration-none text-white"
+              href="https://sevillafc.es/actualidad/noticias/el-sevilla-fc-termina-de-preparar-la-cita-europea-antes-del-viaje-turquia">Ver
+              más</a></button>
+        </div>
+      </div>
+    </section>
+    <!--Section: News of the day-->
+
+    <!--Section: Content-->
+    <section>
+      <div class="row gx-lg-5">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+          <!-- News block -->
+          <div>
+            <!-- Featured image -->
+            <div class="bg-image hover-overlay shadow-1-strong ripple rounded-5 mb-4" data-mdb-ripple-color="light">
+              <img src="../img/tour1.png" class="img-fluid" />
+            </div>
+
+            <!-- Article data -->
+            <div class="row mb-3">
+              <div class="col-6">
+                <a href="https://sevillafc.es/tour-sevillafc  " class="text-info">
+                  <i class="fas fa-plane"></i>
+                  Tour
+                </a>
+              </div>
+
+              <div class="col-6 text-end">
+                <u>15.02.2023</u>
+              </div>
+            </div>
+
+            <!-- Article title and description -->
+            <a href="https://sevillafc.es/tour-sevillafc" class="text-dark">
+              <h5>¡Visita nuestro magnífico tour!</h5>
+            </a>
+            <p class="text-white">
+              Visita el espectacular tour de su estadio, empezando por su museo Sevilla FC History Experience,
+              descubriendo toda la historia del Sevilla FC desde su creación en 1890, sus orígenes, todos sus jugadores,
+              entrenadores, presidentes, camisetas y los trofeos más importantes del Sevilla FC: como las 6 UEFA Europa
+              League juntas. Un museo espectacular para tus sentidos; prepárate para amar, recordar y, sobre todo,
+              emocionarte.</p>
+
+            <hr />
+
+            <!-- News -->
+            <a href="https://promociones.sevillafc.es/consigue-los-guantes-de-bono-firmados-por-el?_ga=2.122968075.1654977233.1679073632-1886558505.1678729368"
+              class="text-dark">
+              <div class="row mb-4 border-bottom pb-2">
+                <div class="col-9">
+                  <p class="mb-2"><strong>Consigue los guantes de Bono firmados</strong></p>
+                  <p>
+                    <u> 05.12.2022</u>
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- News -->
+            <a href="https://www.sevillafc.es/actualidad/noticias/valoracion-monchi-sorteo-cuartos-uel-abril-2023"
+              class="text-dark">
+              <div class="row mb-4 border-bottom pb-2">
+
+
+                <div class="col-9">
+                  <p class="mb-2"><strong>Monchi, sobre el Manchester United</strong></p>
+                  <p>
+                    <u> 26.03.2023</u>
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- News -->
+            <a href="https://www.sevillafc.es/actualidad/noticias/bryan-seleccion-espanola-marzo-2023"
+              class="text-dark">
+              <div class="row mb-4 border-bottom pb-2">
+                <div class="col-9">
+                  <p class="mb-2"><strong>Bryan Gil regresa a la Selección</strong></p>
+                  <p>
+                    <u> 09.01.2023</u>
+                  </p>
+                </div>
+              </div>
+            </a>
+
+
+          </div>
+          <!-- News block -->
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <!-- News block -->
+          <div>
+            <!-- Featured image -->
+            <div class="bg-image hover-overlay shadow-1-strong rounded-5 ripple mb-4" data-mdb-ripple-color="light">
+              <img src="../img/cuartos.jpg" class="img-fluid" alt="Brooklyn Bridge" />
+              <a href="#!">
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+              </a>
+            </div>
+
+            <!-- Article data -->
+            <div class="row mb-3">
+              <div class="col-6">
+                <a href="https://www.sevillafc.es/actualidad/noticias/manchester-united-cuartos-final-uel-2223"
+                  class="text-info">
+                  <i class="fas fa-chart-pie"></i>
+                  Uefa
+                </a>
+              </div>
+
+              <div class="col-6 text-end">
+                <u> 17.03.2023</u>
+              </div>
+            </div>
+
+            <!-- Article title and description -->
+            <a href="https://www.sevillafc.es/actualidad/noticias/manchester-united-cuartos-final-uel-2223"
+              class="text-dark">
+              <h5>Reencuentro con el Manchester United en la UEFA</h5>
+            </a>
+            <p class="text-white">
+              El Sevilla FC y el Manchester United FC se verán las caras tres años después en la UEFA Europa League.
+              Tras aquellas semifinales a partido único en 2020 en Alemania, donde los hispalenses lograron su billete
+              para su sexta final, ahora tocará medirse a doble partido y en la ronda de cuartos de final, como ha
+              dictaminado el sorteo celebrado este viernes en Nyon. La ida será el 13 de abril y la vuelta el 20 de
+              abril, ambos a las 21.00 horas (CET).
+            </p>
+
+
+            <hr />
+
+            <!-- News -->
+            <a href="https://www.sevillafc.es/actualidad/noticias/partidos-de-cantera-15-19-marzo-2023"
+              class="text-dark">
+              <div class="row mb-4 border-bottom pb-2">
+                <div class="col-9">
+                  <p class="mb-2"><strong>Partidos de cantera (15-19 DE MARZO)</strong></p>
+                  <p>
+                    <u> 20.03.2023</u>
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- News -->
+            <a href="https://www.sevillafc.es/actualidad/noticias/declaraciones-amparito-media-day-femenino-2023"
+              class="text-dark">
+              <div class="row mb-4 border-bottom pb-2">
+                <div class="col-9">
+                  <p class="mb-2"><strong>Declaraciones de Amparito</strong></p>
+                  <p>
+                    <u> 21.04.2023</u>
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- News -->
+            <a href="https://www.sevillafc.es/actualidad/noticias/promocion-entradas-sevilla-fc-celta-abril-2023"
+              class="text-dark">
+              <div class="row mb-4 border-bottom pb-2">
+                <div class="col-9">
+                  <p class="mb-2"><strong>Promoción de entrada ante el Celta</strong></p>
+                  <p>
+                    <u> 18.04.2023</u>
+                  </p>
+                </div>
+              </div>
+            </a>
+
+
+
+          </div>
+          <!-- News block -->
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <!-- News block -->
+          <div>
+            <!-- Featured image -->
+            <div class="bg-image hover-overlay shadow-1-strong rounded-5 ripple mb-4" data-mdb-ripple-color="light">
+              <img src="../img/escuela.jpg" class="img-fluid" alt="Golden Gate National Recreation Area" />
+              <a href="#!">
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+              </a>
+            </div>
+
+            <!-- Article data -->
+            <div class="row mb-3">
+              <div class="col-6">
+                <a href="https://www.sevillafc.es/el-club/fundacion/actividades/deportivas" class="text-warning">
+                  <i class="fas fa-code"></i>
+                  Escuela
+                </a>
+              </div>
+
+              <div class="col-6 text-end">
+                <u> 28.10.2023</u>
+              </div>
+            </div>
+
+            <!-- Article title and description -->
+            <a href="https://www.sevillafc.es/el-club/fundacion/actividades/deportivas" class="text-dark">
+              <h5>¡Inscribete en nuestra escuela de fútbol!</h5>
+            </a>
+            <p class="text-white">
+              En nuestra escuela de fútbol Antonio Puerta se enseña a los niños y niñas a jugar al fútbol siguiendo la
+              metodología de nuestra
+              cantera de campeones, con los valores de: TOLERANCIA, COOPERACION, MOTIVACION Y COMPROMISO, ayudando a la
+              formación integral de sus alumnos-as.</p>
+            <p class="text-white">Partimos de la base de ser educadores, enseñamos fútbol, hacemos deportistas, creamos
+              personas.</p>
+            <p class="text-white">PRECIO: Matrícula: 200,00€</p>
+
+
+            <hr />
+
+            <!-- News -->
+            <a href="https://sevillafc.es/app?utm_source=websevilla&utm_medium=home_banner_destacados&utm_content=app&utm_campaign=app&_ga=2.141521202.1654977233.1679073632-1886558505.1678729368"
+              class="text-dark">
+              <div class="row mb-4 border-bottom pb-2">
+                <div class="col-9">
+                  <p class="mb-2"><strong>Descarga nuestra APP</strong></p>
+                  <p>
+                    <u> 12.05.2020</u>
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- News -->
+            <a href="https://shop.sevillafc.es/?utm_source=websevilla&utm_medium=home_banner_destacados&utm_campaign=menu&utm_content=menu_ppal_home_es&_ga=2.104863491.1654977233.1679073632-1886558505.1678729368"
+              class="text-dark">
+              <div class="row mb-4 border-bottom pb-2">
+                <div class="col-9">
+                  <p class="mb-2"><strong>Visita nuestra tienda</strong></p>
+                  <p>
+                    <u> 28.02.2015</u>
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- News -->
+            <a href="https://promociones.sevillafc.es/?utm_source=websevilla&utm_medium=home_banner_destacados&utm_campaign=sorteos&utm_content=sorteos&_ga=2.104863491.1654977233.1679073632-1886558505.1678729368 "
+              class="text-dark">
+              <div class="row mb-4 border-bottom pb-2">
+                <div class="col-9">
+                  <p class="mb-2"><strong>Sorteos para participar</strong></p>
+                  <p>
+                    <u> 25.03.2023</u>
+                  </p>
+                </div>
+              </div>
+            </a>
+
+
+          </div>
+          <!-- News block -->
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+  <!-- Footer -->
+  <footer class="text-center text-lg-start  text-muted">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+
+      <div class="redes">
+        <a href="https://www.facebook.com/sevillafc/?locale=es_ES" target="_blank" class="me-4 text-white"><i
+            class="bi bi-facebook"></i></a>
+        <a href="https://twitter.com/SevillaFC?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"
+          class="me-4 text-white"><i class="bi bi-twitter"></i></a>
+        <a href="https://sevillafc.es/" target="_blank" class="me-4 text-white"> <i class="bi bi-google"></i></a>
+        <a href="https://www.instagram.com/sevillafc/?hl=es" target="_blank" class="me-4 text-white"> <i
+            class="bi bi-instagram"></i></a>
+        <a href="https://www.youtube.com/sevillafc" target="_blank" class="me-4 text-white"><i
+            class="bi bi-youtube"></i></a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section>
+      <div class="container1 text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3 w-100">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3.5 mx-auto mb-4">
+            <img src="../img/cruzc.png" alt="Cruzcampo" width="30%">
+            <img src="../img/robles.png" alt="Robles Restaurantes" width="30%">
+            <img src="../img/scalpers.png" alt="Scalpers" width="30%">
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-4">
+              Equipo
+            </h6>
+            <p>
+              <a href="partidos.html" class="text-reset">Entradas</a>
+            </p>
+            <p>
+              <a href="noticias.html" class="text-reset">Noticias</a>
+            </p>
+            <p>
+              <a href="https://www.sevillafc.es/tour-sevillafc?_ga=2.8427189.1273339710.1678729368-1886558505.1678729368"
+                class="text-reset">Tour Sanchéz-Pizjuán</a>
+            </p>
+            <p>
+              <a href="https://shop.sevillafc.es/?utm_source=sevillafc.es&utm_medium=referral&utm_campaign=web_sfc&utm_content=menu_footer_home_es&_ga=2.15941302.1273339710.1678729368-1886558505.1678729368"
+                class="text-reset">Tienda</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-4">
+              Políticas
+            </h6>
+            <p>
+              <a href="https://sevillafc.es/aviso-legal" class="text-reset">Aviso Legal</a>
+            </p>
+            <p>
+              <a href="https://sevillafc.es/politica-de-cookies" class="text-reset">Cookies</a>
+            </p>
+            <p>
+              <a href="https://sevillafc.es/politica-privacidad" class="text-reset">Privacidad</a>
+            </p>
+            <p>
+              <a href="https://sevillafc.es/mapa-web" class="text-reset">Mapa Web</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-4">Contacto</h6>
+            <p><i class="fas fa-home me-3"></i>Estadio Ramón Sánchez-Pizjuán C/ Sevilla Fútbol Club</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              sevillafc@gmail.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> + 34 434 544 23</p>
+
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4 text-white" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2023 Sevilla FC SAD:
+      <a class="text-reset fw-bold" href="https://live.sevillafc.es/derecho-informacion">Derechos reservados</a>
+    </div>
+
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+</body>
+
+</html>
