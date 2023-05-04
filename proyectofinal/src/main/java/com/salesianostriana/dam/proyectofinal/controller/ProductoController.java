@@ -32,10 +32,8 @@ public class ProductoController {
 	
 	@PostMapping("/addProducto")
 	public String submit(@ModelAttribute("productoForm") Producto producto, Model model) {
-		
+		model.addAttribute("productos", servicio.findAll());
 	    servicio.save(producto);
-	    model.addAttribute("productos", servicio.findAll());
-	    
 	    return "redirect:/producto";
 	}
 	

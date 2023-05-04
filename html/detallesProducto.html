@@ -12,8 +12,19 @@
     <title>Detalles del producto</title>
     <style type="text/css">
         body {
-            background-color: #ecedee
+            background-color: #ecedee;
+            font-family: 'MonteCatini', sans-serif;
         }
+
+        @font-face {
+            font-family: 'MonteCatini';
+            src: url('../fonts/montecatini.ttf');
+        }
+
+        p {
+            font-size: 15pt;
+        }
+
 
         .card {
             border: none;
@@ -37,7 +48,7 @@
         }
 
         .thumbnail_images ul li:hover {
-            border: 2px solid #000
+            border: 2px solid #ff0000
         }
 
         .main_image {
@@ -112,82 +123,6 @@
             position: relative
         }
 
-        .search-option {
-            position: absolute;
-            background-color: #000;
-            overflow: hidden;
-            align-items: center;
-            color: #fff;
-            width: 200px;
-            height: 200px;
-            border-radius: 49% 51% 50% 50% / 68% 69% 31% 32%;
-            left: 30%;
-            bottom: -250px;
-            transition: all 0.5s;
-            cursor: pointer
-        }
-
-        .search-option .first-search {
-            position: absolute;
-            top: 20px;
-            left: 90px;
-            font-size: 20px;
-            opacity: 1000
-        }
-
-        .search-option .inputs {
-            opacity: 0;
-            transition: all 0.5s ease;
-            transition-delay: 0.5s;
-            position: relative
-        }
-
-        .search-option .inputs input {
-            position: absolute;
-            top: 200px;
-            left: 30px;
-            padding-left: 20px;
-            background-color: transparent;
-            width: 300px;
-            border: none;
-            color: #fff;
-            border-bottom: 1px solid #eee;
-            transition: all 0.5s;
-            z-index: 10
-        }
-
-        .search-option .inputs input:focus {
-            box-shadow: none;
-            outline: none;
-            z-index: 10
-        }
-
-        .search-option:hover {
-            border-radius: 0px;
-            width: 100%;
-            left: 0px
-        }
-
-        .search-option:hover .inputs {
-            opacity: 1
-        }
-
-        .search-option:hover .first-search {
-            left: 27px;
-            top: 25px;
-            font-size: 15px
-        }
-
-        .search-option:hover .inputs input {
-            top: 20px
-        }
-
-        .search-option .share {
-            position: absolute;
-            right: 20px;
-            top: 22px
-        }
-
         .buttons .btn {
             height: 50px;
             width: 150px;
@@ -225,7 +160,9 @@
                             <h3>IIlana</h3>
                         </div>
                         <div class="mt-2 pr-3 content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            <p class="parrafo fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod
+                                tempor incididunt
                                 ut labore et dolore magna aliqua</p>
                         </div>
                         <h3>$430.99</h3>
@@ -236,7 +173,10 @@
                             <p id="numeroAleatorio"></p>
                         </div>
                         <div class="buttons d-flex flex-row mt-5 gap-3">
-                            <button class="btn btn-dark">Añadir al carrito</button>
+                            <button class="btn btn-danger">Añadir al carrito</button>
+                        </div>
+                        <div class="buttons d-flex flex-row mt-5 gap-3">
+                            <button class="btn btn-danger">Volver</button>
                         </div>
                     </div>
                 </div>

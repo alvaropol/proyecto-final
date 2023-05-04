@@ -91,6 +91,7 @@
 											<table class="table table-red table-borderless mb-0 text-dark">
 												<thead>
 													<tr>
+														<th scope="col">Id</th>
 														<th scope="col">Producto</th>
 														<th scope="col">Categoría</th>
 														<th scope="col">Precio</th>
@@ -99,6 +100,7 @@
 												</thead>
 												<tbody>
 													<tr th:each="productoForm : ${productos}">
+														<td th:text="${productoForm.id}"></td>
 														<td th:text="${productoForm.nombre}"></td>
 														<td th:text="${productoForm.categoria}"></td>
 														<td th:text="${productoForm.precio} + '€'"></td>
