@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.proyectofinal.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,7 @@ import com.salesianostriana.dam.proyectofinal.service.ProductoService;
 
 
 @Controller
-public class ProductController {
+public class ProductoController {
 	
 	@Autowired
 	private ProductoService servicio;
@@ -23,18 +24,20 @@ public class ProductController {
 	    Producto producto = new Producto();
 
 	    model.addAttribute("productoForm", producto);
+	    model.addAttribute("productos", servicio.findAll());
 	    
 	    return "tienda";
 	}
 
 	
-	@PostMapping ("/addProducto")
-	public String submit(@ModelAttribute("productoForm") Producto producto,  Model model) {
-
-		model.addAttribute("producto", producto);
-		servicio.save(producto);
+	@PostMapping("/addProducto")
+	public String submit(@ModelAttribute("productoForm") Producto producto, Model model) {
 		
-		return "tienda";
+	    servicio.save(producto);
+	    model.addAttribute("productos", servicio.findAll());
+	    
+	    return "redirect:/producto";
 	}
+	
 	
 }

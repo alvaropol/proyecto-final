@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+body {
+      background-color: rgb(224, 51, 51);
+      font-family: 'MonteCatini', sans-serif;
+    }
+
+    @font-face {
+      font-family: 'MonteCatini';
+      src: url('../fonts/montecatini.ttf');
+    }
+
+    nav {
+      font-size: 15pt;
+    }
+
+    .redes {
+      margin: 0 auto;
+      color: white;
+    }
+
+    .redes a {
+      font-size: 20pt;
+    }
+
+    .redes i:hover {
+      color: rgb(240, 102, 102);
+    }
+
+    footer {
+      background-color: rgb(224, 51, 51);
+
+    }
+
+    .container1 {
+      color: white;
+    }
+
+    img {
+      padding: 15px;
+    }

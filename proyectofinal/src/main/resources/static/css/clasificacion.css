@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+body {
+            background-color: rgb(224, 51, 51);
+            font-family: 'MonteCatini', sans-serif;
+        }
+
+        @font-face {
+            font-family: 'MonteCatini';
+            src: url('../fonts/montecatini.ttf');
+        }
+
+
+        .redes {
+            margin: 0 auto;
+            color: white;
+
+        }
+
+        nav {
+            font-size: 15pt;
+        }
+
+        .redes a {
+            font-size: 20pt;
+        }
+
+        .redes i:hover {
+            color: rgb(240, 102, 102);
+        }
+
+        footer {
+            background-color: rgb(224, 51, 51);
+
+        }
+
+        .container1 {
+            color: white;
+        }
+
+        img {
+            padding: 15px;
+        }
+
+
+        table {
+            width: 50%;
+            margin: 0 auto;
+            background-color: rgb(240, 225, 225);
+            font-family: Arial, sans-serif;
+            opacity: 95%;
+        }
+
+        td {
+            font-size: 1em;
+            text-align: center;
+            padding: 5px;
+        }
+
+        th {
+            width: 20%;
+
+        }
+
+        thead tr:last-child {
+            border-bottom: 3px solid red;
+        }
+
+        thead>tr:first-child {
+            border-bottom: 2px solid rgb(0, 0, 0);
+        }
+
+        thead td:first-child {
+            letter-spacing: normal;
+        }
+
+
+        td img {
+            width: 100%;
+            display: inline-block;
+
+        }
+
+        tbody>tr>td:nth-child(2) {
+            width: 15px;
+            vertical-align: middle;
+            padding-top: 5px;
+            padding-left: 8px;
+        }
+
+
+        td.normal {
+            border-left: 1px solid rgba(157, 156, 156, 0.587);
+        }
+
+        td.uefa {
+            border-left: 1px solid yellow;
+        }
+
+        td.champions {
+            border-left: 1px solid rgb(71, 81, 223);
+
+
+        }
+
+        td.descenso {
+            border-left: 1px solid red;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: rgba(160, 121, 121, 0.295);
+        }
+
+        tbody tr:nth-child(odd):hover {
+            background-color: rgb(218, 102, 102);
+            cursor: pointer;
+        }
+
+        tbody>tr>td:nth-child(3) {
+            text-align: left;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: red;
+        }
+
+        tbody tr:nth-child(even):hover {
+            background-color: rgb(143, 102, 102);
+            cursor: pointer;
+        }
+
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: red;
+        }
+
+        tbody tr:nth-child(even):hover {
+            background-color: rgb(146, 130, 130);
+            cursor: pointer;
+        }
