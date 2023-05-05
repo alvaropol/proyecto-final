@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
 public abstract class BaseServiceImpl<T, ID, R extends JpaRepository<T, ID>>
 						implements BaseService<T, ID>{
 
@@ -47,6 +48,8 @@ public abstract class BaseServiceImpl<T, ID, R extends JpaRepository<T, ID>>
 		// TODO Auto-generated method stub
 		repository.deleteById(id);
 	}
+	
+
 	
 	
 }
