@@ -8,48 +8,40 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyectofinal.model.Producto;
 import com.salesianostriana.dam.proyectofinal.service.ProductoService;
 
 @Controller
+@RequestMapping("/productos")
 public class ProductoController {
 
 	@Autowired
 	private ProductoService servicio;
 
-	@GetMapping("/producto")
+	@GetMapping("/")
 	public String showForm(Model model) {
-		
-		Producto producto = new Producto();
-		model.addAttribute("productoForm", producto);
-		model.addAttribute("productos", servicio.findAll());
+		model.addAttribute("listaProductos", servicio.findAll());
+		model.addAttribute("productoForm", new Producto());
+
 
 		return "tienda";
 	}
-
-	@PostMapping("/addProducto")
-	public String submit(@ModelAttribute("productoForm") Producto producto, Model model) {
-		servicio.save(producto);
-		return "redirect:/producto";
-	}
-
+	
 	@GetMapping("/editar/{id}")
 	public String showEditForm(@PathVariable("id") long id, Model model) {
-
-		Producto pEditar = servicio.findById(id);
-
-		if (pEditar != null) {
-			model.addAttribute("producto", pEditar);
-			return "tienda";
-		} else {
-			return "redirect:/producto";
-		}
-	}
+		model.addAttribute("producto", servicio.findById(id));
+		model.addAttribute("listaProductos", servicio.findAll());
 	
-	@PostMapping("/editar/submit")
-	public String submit(@ModelAttribute("producto") Producto producto) {
-		servicio.edit(producto);
-		return "redirect:/producto";
+		
+		return "tienda";
+	}
+
+	
+	@PostMapping("/editar")
+	public String editarProducto(@ModelAttribute("productoNew") Producto productoNew,  Model model) {
+		servicio.save(productoNew);
+		return "redirect:/productos/";
 	}
 }
