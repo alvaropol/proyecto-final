@@ -20,18 +20,13 @@ public class ProductoController {
 	@Autowired
 	private ProductoService servicio;
 
-	@GetMapping("/admin")
+	@GetMapping("/")
 	public String showForm(Model model) {
 		model.addAttribute("listaProductos", servicio.findAll());
 		model.addAttribute("productoForm", new Producto());
 		return "tienda";
 	}
 	
-	@GetMapping("/")
-	public String showTienda(Model model) {
-	
-		return "tienda";
-	}
 	
 	@GetMapping("/editar/{id}")
 	public String showEditForm(@PathVariable("id") long id, Model model) {
@@ -44,8 +39,8 @@ public class ProductoController {
 
 	
 	@PostMapping("/editar")
-	public String editarProducto(@ModelAttribute("productoNew") Producto productoNew,  Model model) {
-		servicio.save(productoNew);
+	public String editarProducto(@ModelAttribute("productoForm") Producto productoForm,  Model model) {
+		servicio.save(productoForm);
 		return "redirect:/productos/";
 	}
 }

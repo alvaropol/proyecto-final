@@ -468,4 +468,10 @@ body {
             margin-right: 2px;
             opacity: 0.6;      
             } 
+            
+        .columnaProducto{
+			display: inline-block;
+   			 width: 33%;
+   			 margin-bottom: 20px;
+		}
  
