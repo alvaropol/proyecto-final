@@ -20,12 +20,16 @@ public class ProductoController {
 	@Autowired
 	private ProductoService servicio;
 
-	@GetMapping("/")
+	@GetMapping("/admin")
 	public String showForm(Model model) {
 		model.addAttribute("listaProductos", servicio.findAll());
 		model.addAttribute("productoForm", new Producto());
-
-
+		return "tienda";
+	}
+	
+	@GetMapping("/")
+	public String showTienda(Model model) {
+	
 		return "tienda";
 	}
 	

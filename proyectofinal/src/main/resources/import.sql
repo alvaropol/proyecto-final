@@ -1,0 +1,3 @@
+INSERT INTO PRODUCTO (id,calificacion,categoria,descripcion,imagen,nombre,precio) VALUES (NEXTVAL('hibernate_sequence'),9,'Ropa','Gorra de color rojo, con el escudo del Sevilla FC bordado en la parte frontal de la gorra',null,'Gorra NIKE roja del Sevilla FC',14.99);
+INSERT INTO PRODUCTO (id,calificacion,categoria,descripcion,imagen,nombre,precio) VALUES (NEXTVAL('hibernate_sequence'),8,'Accesorio','Taza de cerámica con los colores del Sevilla FC y su escudo',null,'Taza del Sevilla FC',9.99);
+INSERT INTO PRODUCTO (id,calificacion,categoria,descripcion,imagen,nombre,precio) VALUES (NEXTVAL('hibernate_sequence'),7,'Objeto deportivo','Balón con materiales de calidad, y con escudo del Sevilla FC',null,'Balón NIKE del Sevilla FC',25.5);

@@ -61,7 +61,7 @@
 														<td th:text="${productoForm.id}"></td>
 														<td th:text="${productoForm.nombre}"></td>
 														<td th:text="${productoForm.categoria}"></td>
-														<td th:text="${productoForm.precio} + '€'"></td>
+														<td th:text="${precio} + ' €'"></td>
 														<td th:text="${productoForm.calificacion}"></td>
 														<td style="vertical-align: middle;">
 															<a th:href="@{/productos/detallesProducto}"><i class="bi bi-info-circle-fill fs-5"></i></a>
@@ -113,8 +113,8 @@
 								</select>
 							</div>
 							<div class="mb-3">
-								<label for="precio" class="form-label">Precio</label>
-								<input type="number" name="precio" th:field="*{precio}" class="form-control" id="precio">
+								<label for="precioProducto">Precio</label>
+								<input required type="text" name="Precio" th:field="*{precio}" class="form-control" id="precioProducto">
 							</div>
 							<div class="mb-3">
 								<label for="descripcion" class="form-label">Descripción</label>
@@ -141,70 +141,23 @@
 
 		<section class="section-products">
             <div class="container">
-               
-                <div class="row">
-
+                <div class="row" th:each="productoForm : ${listaProductos}">
                     <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div id="product-1" class="single-product">
+                        <div id="product" class="single-product">
                             <div class="part-1">
                                 <img src="https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/3ffe998d-03d5-4a6a-8965-d11a4255a409?rule=hw396_70"
-                                    alt="">
+                                    alt="Imagen del producto">
                                 <ul>
                                     <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
                                     <li><a href="#"><i class="fas fa-plus"></i></a></li>
                                 </ul>
                             </div>
                             <div class="part-2">
-                                <h3 class="product-title">Nombre</h3>
-                                <h4 class="product-price">XX.XX€</h4>
+                                <h3 class="product-title" th:text="${productoForm.nombre}">Nombre producto</h3>
+                                <h4 class="product-price" th:text="${precio}" >XX.XX€</h4>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div id="product-2" class="single-product">
-                            <div class="part-1">
-                                <ul>
-                                    <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-                                    <li><a href="#"><i class="fas fa-plus"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="part-2">
-                                <h3 class="product-title">Nombre</h3>
-                                <h4 class="product-price">XX.XX€</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div id="product-3" class="single-product">
-                            <div class="part-1">
-                                <ul>
-                                    <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-                                    <li><a href="#"><i class="fas fa-plus"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="part-2">
-                                <h3 class="product-title">Nombre</h3>
-                                <h4 class="product-price">XX.XX€</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div id="product-4" class="single-product">
-                            <div class="part-1">
-                                <ul>
-                                    <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-                                    <li><a href="#"><i class="fas fa-plus"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="part-2">
-                                <h3 class="product-title">Nombre</h3>
-                                <h4 class="product-price">XX.XX€</h4>
-                            </div>
-                        </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </section>
