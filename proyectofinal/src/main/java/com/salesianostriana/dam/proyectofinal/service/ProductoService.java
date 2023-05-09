@@ -9,4 +9,5 @@ import com.salesianostriana.dam.proyectofinal.repository.ProductRepository;
 public class ProductoService
 				extends BaseServiceImpl<Producto, Long, ProductRepository>{
 
+	
 }

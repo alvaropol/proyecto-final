@@ -24,6 +24,7 @@ public class Producto {
 	private double precio;
 	private String descripcion;
 	private int calificacion;	//Del 1 al 10 
+	private String imagen;
 	
 	
 	
