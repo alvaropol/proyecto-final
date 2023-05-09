@@ -22,26 +22,40 @@ public class ProductoController {
 	private ProductoService servicio;
 
 	@GetMapping("/")
-	public String showForm(Model model) {
-		Producto producto= new Producto();
-		model.addAttribute("listaProductos", servicio.findAll());
-		model.addAttribute("producto", producto);
+	public String showTienda(Model model){
+		model.addAttribute("listaProductos",servicio.findAll());
 		return "tienda";
 	}
 	
+	@GetMapping("/admin/")
+	public String showTiendaAdmin(Model model){
+		model.addAttribute("listaProductos",servicio.findAll());
+		return "admin/tienda-admin";
+	}
 	
-
-	@GetMapping("/editar/{id}")
+	@GetMapping("/admin/add/")
+	public String showForm(Model model) {
+		Producto producto= new Producto();
+		model.addAttribute("producto", producto);
+		return "formularioProducto";
+	}
+	
+	@GetMapping("/admin/editar/{id}/")
 	public String showEditForm(@PathVariable("id") long id, Model model) {
 		model.addAttribute("producto", servicio.findById(id).get());
 		model.addAttribute("listaProductos", servicio.findAll());
-		return "editarProducto";
+		return "formularioProducto";
 	}
-
 	
-	@PostMapping("/editar")
+	@PostMapping("/admin/add/submit/")
+	public String addProduct(@ModelAttribute("producto") Producto producto, Model model) {
+		servicio.save(producto);
+		return "redirect:/productos/admin/";
+	}
+	
+	@PostMapping("/admin/editar/submit/")
 	public String editarProducto(@ModelAttribute("producto") Producto producto,  Model model) {
 		servicio.edit(producto);
-		return "redirect:/productos/";
+		return "redirect:/productos/admin/";
 	}
 }
