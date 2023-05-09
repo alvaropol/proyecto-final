@@ -1,6 +1,8 @@
 package com.salesianostriana.dam.proyectofinal.controller;
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,5 +59,18 @@ public class ProductoController {
 	public String editarProducto(@ModelAttribute("producto") Producto producto,  Model model) {
 		servicio.edit(producto);
 		return "redirect:/productos/admin/";
+	}
+	
+	@GetMapping("/admin/borrar/{id}/")
+	public String borrarProducto(@PathVariable("id") Long id, Model model) {
+	    
+		Optional<Producto> pBorrar = servicio.findById(id);
+
+	    if (pBorrar.isPresent()) {
+	        Producto producto = pBorrar.get();
+	        servicio.delete(producto);
+	    }
+
+	    return "redirect:/productos/admin/";
 	}
 }

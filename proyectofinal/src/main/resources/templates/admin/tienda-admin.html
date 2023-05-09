@@ -71,8 +71,26 @@
 																class="bi bi-pencil-square fs-5"></i></a>
 													</td>
 													<td style="vertical-align: middle;">
-														<a><i class="bi bi-trash fs-5"></i></a>
+														<a href="#" data-bs-toggle="modal" th:attr="data-bs-target='#borrarProducto'+ '-' + ${producto.id}"><i class="bi bi-trash fs-5"></i></a>
 													</td>
+													
+													<div class="modal text-white" th:id="borrarProducto + '-' + ${producto.id}">
+													      <div class="modal-dialog remove">
+													        <div class="modal-content">
+								
+													          <div class="modal-header bg-danger border-0">
+													            <h4 class="modal-title mx-auto">¿Estas seguro?</h4>
+													            <button type="button" class="btn-close mx-0" data-bs-dismiss="modal"></button>
+													          </div>
+													
+													          
+													          <div class="modal-body bg-danger">
+													            <a class="btn bg-white text-dark mx-auto w-100" th:href="@{/productos/admin/borrar/{id}/(id=${producto.id})}">Borrar</a>
+													          </div>
+													
+													        </div>
+													      </div>
+													 </div>
 												</tr>
 											</tbody>
 										</table>
@@ -85,6 +103,8 @@
 			</div>
 		</div>
 	</section>
+	
+
 
 
 
@@ -98,19 +118,20 @@
 	<section class="section-products">
 		<div class="container">
 			<div class="row">
-				<div class="col-4" th:each="productoForm : ${listaProductos}">
+				<div class="col-4" th:each="producto : ${listaProductos}">
 					<div id="product" class="single-product">
 						<div class="part-1">
-							<img src="https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/3ffe998d-03d5-4a6a-8965-d11a4255a409?rule=hw396_70"
-								alt="Imagen del producto">
+							<img th:src="${not (#strings.isEmpty(producto.imagen))} 
+								              ? ${producto.imagen} : 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg'"
+								class="img-responsive icono-categoria" alt="Imagen del producto" style="width: 100%; height: auto;">
 							<ul>
 								<li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
 								<li><a href="#"><i class="fas fa-plus"></i></a></li>
 							</ul>
 						</div>
 						<div class="part-2">
-							<h3 class="product-title" th:text="${productoForm.nombre}">Nombre producto</h3>
-							<h4 class="product-price" th:text="${productoForm.precio} + ' €'">XX.XX€</h4>
+							<h3 class="product-title" th:text="${producto.nombre}">Nombre producto</h3>
+							<h4 class="product-price" th:text="${producto.precio} + ' €'">XX.XX€</h4>
 						</div>
 					</div>
 				</div>
