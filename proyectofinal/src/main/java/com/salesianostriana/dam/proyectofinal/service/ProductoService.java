@@ -9,13 +9,5 @@ import com.salesianostriana.dam.proyectofinal.repository.ProductRepository;
 public class ProductoService
 				extends BaseServiceImpl<Producto, Long, ProductRepository>{
 
-	private ProductRepository productRepository;
-
-	public ProductoService(ProductRepository repo) {
-		this.productRepository = repo;
-	}
 	
-	public Producto findById(long id) {
-		return productRepository.findById(id).orElse(null);
-	}
 }

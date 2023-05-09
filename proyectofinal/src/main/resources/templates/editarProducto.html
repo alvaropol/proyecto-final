@@ -36,73 +36,12 @@
 	</div>
 
 
+	<div id="addProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div>
+			<div>
 
-	<section class="intro">
-		<div class="bg-image h-100 productable ">
-			<div class="mask d-flex align-items-center h-100" style="background-color: rgb(224, 51, 51);">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-12">
-							<div class="card bg-white shadow-2-strong">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table table-red table-borderless mb-0 text-dark">
-											<thead>
-												<tr>
-													<th scope="col">Id</th>
-													<th scope="col">Producto</th>
-													<th scope="col">Categoría</th>
-													<th scope="col">Precio</th>
-													<th scope="col">Calificación</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr th:each="producto : ${listaProductos}">
-													<td th:text="${producto.id}"></td>
-													<td th:text="${producto.nombre}"></td>
-													<td th:text="${producto.categoria}"></td>
-													<td th:text="${producto.precio} + ' €'"></td>
-													<td th:text="${producto.calificacion}"></td>
-													<td style="vertical-align: middle;">
-														<a th:href="@{/productos/detallesProducto}"><i
-																class="bi bi-info-circle-fill fs-5"></i></a>
-													</td>
-													<td style="vertical-align: middle;">
-														<a th:href="@{/productos/editar/{id}(id=${producto.id})}"><i
-																class="bi bi-pencil-square fs-5"></i></a>
-													</td>
-													<td style="vertical-align: middle;">
-														<button class="btn btn-sm boton eliminar"
-															id="eliminar1">Eliminar</button>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-
-	<form>
-		<input id="añadir" type="button" value="Añadir producto" data-bs-toggle="modal" data-bs-target="#addProducto"
-			class="btn-white mt-3 rounded-3 w-10" style="margin-left: 45%;">
-	</form>
-
-
-	<!-- Modal -->
-	<div class="modal" id="addProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-
-				<div class="modal-body">
+				<div>
 					<form method="POST" th:action="@{/productos/editar}" th:object="${producto}">
-
 						<div class="mb-3">
 							<label for="nombreProducto" class="form-label">Nombre</label>
 							<input required type="text" class="form-control" id="nombreProducto"
@@ -133,7 +72,7 @@
 							<input type="number" name="calificacion" th:field="*{calificacion}" class="form-control"
 								id="calificacion" min="1" max="10">
 						</div>
-						<div class="modal-footer">
+						<div>
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 							<input type="submit" class="btn btn-primary" value="Guardar" />
 						</div>
@@ -146,30 +85,6 @@
 
 
 
-	<section class="section-products">
-		<div class="container d-flex">
-			<div class="row row row-cols-3" th:each="productoForm : ${listaProductos}">
-				<div class="flex-fill ms-4">
-					<div id="product" class="single-product">
-						<div class="part-1">
-							<img src="https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/3ffe998d-03d5-4a6a-8965-d11a4255a409?rule=hw396_70"
-								alt="Imagen del producto">
-							<ul>
-								<li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-								<li><a href="#"><i class="fas fa-plus"></i></a></li>
-							</ul>
-						</div>
-						<div class="part-2">
-							<h3 class="product-title" th:text="${productoForm.nombre}">Nombre producto</h3>
-							<h4 class="product-price" th:text="${productoForm.precio} + ' €'">XX.XX€</h4>
-						</div>
-
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 	<hr>
 	</main>
 
