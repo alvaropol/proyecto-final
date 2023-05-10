@@ -10,7 +10,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-	<link rel="stylesheet" th:href="@{/css/tienda.css}" />
+	<link rel="stylesheet" th:href="@{/css/tienda.css}"/>
 </head>
 
 <body>
@@ -62,8 +62,9 @@
 													<td th:text="${producto.categoria}"></td>
 													<td th:text="${producto.precio} + ' €'"></td>
 													<td th:text="${producto.calificacion}"></td>
+													
 													<td style="vertical-align: middle;">
-														<a th:href="@{/productos/detallesProducto}"><i
+														<a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i
 																class="bi bi-info-circle-fill fs-5"></i></a>
 													</td>
 													<td style="vertical-align: middle;">
@@ -104,29 +105,23 @@
 		</div>
 	</section>
 	
-
-
-
-
-	<div>
-		<button class="btn bg-white text-dark" style="margin-left: 45%; margin-top: 20px;">
-			<a th:href="@{/productos/admin/add/}">Añadir producto</a>
-		</button>
-	</div>
 	
-
+		<a th:href="@{/productos/admin/add/}" class="btn bg-white text-dark" style="padding-top:10px; margin-left: 45%; margin-top: 20px;">Añadir producto</a>
+	
 	<section class="section-products">
 		<div class="container">
 			<div class="row">
 				<div class="col-4" th:each="producto : ${listaProductos}">
 					<div id="product" class="single-product">
 						<div class="part-1">
-							<img th:src="${not (#strings.isEmpty(producto.imagen))} 
+							<a th:href="@{/productos/detalles/{id}/(id=${producto.id})}">
+								<img th:src="${not (#strings.isEmpty(producto.imagen))} 
 								              ? ${producto.imagen} : 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg'"
-								class="img-responsive icono-categoria" alt="Imagen del producto" style="width: 100%; height: auto;">
+									class="img-responsive icono-categoria" alt="Imagen del producto" style="width: 100%; height: auto;">
+							</a>
 							<ul>
 								<li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-								<li><a href="#"><i class="fas fa-plus"></i></a></li>
+								<li><a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i class="fas fa-plus"></i></a></li>
 							</ul>
 						</div>
 						<div class="part-2">
