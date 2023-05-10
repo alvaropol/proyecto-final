@@ -11,7 +11,6 @@
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 	<link rel="stylesheet" th:href="@{/css/tienda.css}" />
-	<script src="../static/js/mostrarFormularioEditar.js" th:src="@{/js/mostrarFormularioEditar.js}" defer></script>
 </head>
 
 <body>
@@ -53,12 +52,11 @@
 										<div class="row">
 
 											<div class="form-outline mb-4">
-												<select class="select" style="width: 200px;" th:field="*{categoria}">
-													<option value="-1" disabled selected>---</option>
-													<!--Aquí iria la asosiación categoria (con un th:each)-->
-													<option value="Ropa">Ropa</option>
-													<option value="Accesorio">Accesorio</option>
-													<option value="Objeto deportivo">Objeto deportivo</option>
+												<label for="categoria">Categoría</label> 
+												<select th:field="*{categoria}" class="form-control" style="width: 200px;">
+													<option value="-1">---</option>
+													<option th:each="categoria : ${listaCategorias}"
+														th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
 												</select>
 											</div>
 										</div>

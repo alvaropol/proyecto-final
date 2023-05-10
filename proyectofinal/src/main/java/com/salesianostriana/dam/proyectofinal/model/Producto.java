@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,12 +22,24 @@ public class Producto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	private String nombre, categoria;
+	private String nombre;
 	private double precio;
 	private String descripcion;
 	private int calificacion;	//Del 1 al 10 
 	@Lob
 	private String imagen;
+	
+	@ManyToOne
+	private Categoria categoria;
+	
+	public Producto(String nombre, double precio, String descripcion, int calificacion, String imagen, Categoria categoria) {
+		this.nombre = nombre;
+		this.precio=precio;
+		this.descripcion = descripcion;
+		this.calificacion = calificacion;
+		this.imagen = imagen;
+		this.categoria = categoria;
+	}
 	
 	
 	
