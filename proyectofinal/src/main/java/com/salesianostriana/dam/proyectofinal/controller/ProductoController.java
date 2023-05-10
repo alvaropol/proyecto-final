@@ -49,6 +49,12 @@ public class ProductoController {
 		return "formularioProducto";
 	}
 	
+	@GetMapping("/detalles/{id}/")
+	public String showProductDetails(@PathVariable("id") long id, Model model) {
+		model.addAttribute("producto", servicio.findById(id).get());
+		return "detallesProducto";
+	}
+	
 	@PostMapping("/admin/add/submit/")
 	public String addProduct(@ModelAttribute("producto") Producto producto, Model model) {
 		servicio.save(producto);
