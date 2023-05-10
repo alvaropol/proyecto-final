@@ -54,7 +54,7 @@
 											<div class="form-outline mb-4">
 												<label for="categoria">Categoría</label> 
 												<select th:field="*{categoria}" class="form-control" style="width: 200px;">
-													<option value="-1">---</option>
+													<option value="-1" disabled>---</option>
 													<option th:each="categoria : ${listaCategorias}"
 														th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
 												</select>
