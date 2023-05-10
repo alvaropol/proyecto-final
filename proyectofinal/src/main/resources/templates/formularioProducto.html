@@ -81,7 +81,12 @@
 											<input type="number" name="calificacion" th:field="*{calificacion}"
 												class="form-control" id="calificacion" min="1" max="10">
 										</div>
-
+										
+										<div class="form-outline mb-4">
+											<label for="imagen">URL de la imagen</label> <input type="url" class="form-control" id="imagen" placeholder="http://..."
+											th:field="*{imagen}">
+										</div>
+										
 										<div class="d-flex justify-content-end pt-3">
 											<button type="reset" class="btn btn-danger btn-lg">Resetear</button>
 											<button type="submit" class="btn btn-danger btn-lg ms-2">Guardar</button>
@@ -97,7 +102,6 @@
 	</section>
 </main>
 
-	<footer th:replace="~{fragmentos/pie::pie}"></footer>
 
 </body>
 </html>
