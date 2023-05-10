@@ -40,12 +40,14 @@
 				<div class="col-4" th:each="producto : ${listaProductos}">
 					<div id="product" class="single-product">
 						<div class="part-1">
-							<img th:src="${not (#strings.isEmpty(producto.imagen))} 
+							<a th:href="@{/productos/detalles/{id}/(id=${producto.id})}">
+								<img th:src="${not (#strings.isEmpty(producto.imagen))} 
 								              ? ${producto.imagen} : 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg'"
-								class="img-responsive icono-categoria" alt="Imagen del producto" style="width: 100%; height: auto;">
+									class="img-responsive icono-categoria" alt="Imagen del producto" style="width: 100%; height: auto;">
+							</a>
 							<ul>
 								<li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-								<li><a href="#"><i class="fas fa-plus"></i></a></li>
+								<li><a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i class="fas fa-plus"></i></a></li>
 							</ul>
 						</div>
 						<div class="part-2">
