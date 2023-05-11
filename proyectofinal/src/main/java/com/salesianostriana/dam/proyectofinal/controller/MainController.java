@@ -30,6 +30,10 @@ public class MainController {
 		return "contacto";
 	}
 
+	@GetMapping("/login/")
+	public String showLogIn() {
+		return "login";
+	}
 
 	
 }

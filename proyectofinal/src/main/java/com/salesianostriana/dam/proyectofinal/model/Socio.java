@@ -25,6 +25,5 @@ public class Socio {
 	private String nombre, apellidos;
 	private LocalDate fechaNacimiento;
 	private String direccion, telefono, email, password;
-	private int cantidadCompras;
 	private boolean socioRojo;
 }

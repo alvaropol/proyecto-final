@@ -25,22 +25,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbar">
 				<ul class="nav navbar-nav me-auto">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-							aria-haspopup="true" aria-expanded="false">Login</a>
-						<div class="dropdown-menu">
-							<form class="px-4 py-3" style="width: 320px; font-family: Arial;">
-								<div class="mb-3">
-									<label for="usuario" class="form-label">Usuario</label>
-									<input type="text" class="form-control" id="usuario">
-								</div>
-								<div class="mb-3">
-									<label for="contrasena" class="form-label">Contraseña</label>
-									<input type="password" class="form-control" id="contrasena">
-								</div>
-								<button type="submit" class="btn btn-danger">Iniciar sesión</button>
-							</form>
-						</div>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/login/}">Login</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" th:href="@{/socios}">Socios</a>

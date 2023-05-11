@@ -64,12 +64,12 @@
 										<div class="form-outline mb-4">
 											<label for="precioProducto">Precio</label>
 											<input required type="text" name="Precio" th:field="*{precio}"
-												class="form-control" id="precioProducto">
+												class="form-control" id="precioProducto" min="0.01">
 										</div>
 
 										<div class="form-outline mb-4">
 											<label for="descripcion" class="form-label">Descripción</label>
-											<textarea class="form-control" name="descripcion" th:field="*{descripcion}"
+											<textarea class="form-control" required name="descripcion" th:field="*{descripcion}"
 												id="descripcion" rows="3"
 												placeholder="Escriba aquí la descripción detallada del producto"></textarea>
 										</div>
