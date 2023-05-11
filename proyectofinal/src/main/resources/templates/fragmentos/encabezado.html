@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<meta charset="UTF-8">
@@ -25,8 +26,12 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbar">
 				<ul class="nav navbar-nav me-auto">
+
 					<li class="nav-item">
-						<a class="nav-link" th:href="@{/login/}">Login</a>
+						  <th:block th:if="${#authentication.isAuthenticated()}">
+						  <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+						  <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+						  </th:block>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" th:href="@{/socios}">Socios</a>
@@ -53,8 +58,14 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" th:href="@{/contacto}">Contacta con nosotros</a>
 						</div>
-
+						
 					</li>
+					
+					<li class="nav-item" style="margin-left: 20px;">
+						<a class="nav-link"><p>Bienvenido <span sec:authentication="name">Usuario</span></p></a>
+					</li>
+					
+					
 				</ul>
 			</div>
 		</div>
