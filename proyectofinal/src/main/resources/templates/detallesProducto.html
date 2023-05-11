@@ -38,10 +38,16 @@
                             <h3 th:text="${producto.nombre}"></h3>
                         </div>
                         <div class="mt-2 pr-3 content">
+                            <p class="parrafo fs-6" th:text="'Calificación: '+${producto.calificacion}"></p>
+                        </div>
+                        <div class="mt-2 pr-3 content">
                             <p class="parrafo fs-6" th:text="${producto.descripcion}"></p>
                         </div>
                         <h3 th:text="${producto.precio} + '€'"></h3>
                         <div class="ratings d-flex flex-row align-items-center">
+                        </div>
+                        <div class="mt-2 pr-3 content">
+                            <p class="parrafo fs-6" th:text="'Categoria: '+${producto.categoria.nombre}"></p>
                         </div>
                         <div class="buttons d-flex flex-row mt-5 gap-3">
                              <a href="#" class="btn bg-danger text-white" style="padding-top:10px;">Añadir al carrito</a>

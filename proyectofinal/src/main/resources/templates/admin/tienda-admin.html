@@ -10,7 +10,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-	<link rel="stylesheet" th:href="@{/css/tienda.css}"/>
+	<link rel="stylesheet" th:href="@{/css/tienda.css}" />
 </head>
 
 <body>
@@ -27,6 +27,23 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarColor02">
 					<ul class="navbar-nav me-auto">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+								aria-haspopup="true" aria-expanded="false">Login</a>
+							<div class="dropdown-menu">
+								<form class="px-4 py-3" style="width: 320px; font-family: Arial;">
+									<div class="mb-3">
+										<label for="usuario" class="form-label">Usuario</label>
+										<input type="text" class="form-control" id="usuario">
+									</div>
+									<div class="mb-3">
+										<label for="contrasena" class="form-label">Contraseña</label>
+										<input type="password" class="form-control" id="contrasena">
+									</div>
+									<button type="submit" class="btn btn-danger">Iniciar sesión</button>
+								</form>
+							</div>
+						</li>
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{/socios}">Socios</a>
 						</li>
@@ -53,17 +70,17 @@
 								<a class="dropdown-item" th:href="@{/contacto}">Contacta con nosotros</a>
 							</div>
 						</li>
-						
+
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
 								aria-haspopup="true" aria-expanded="false">Opciones de tienda</a>
-							<div class="dropdown-menu">	
+							<div class="dropdown-menu">
 								<a class="dropdown-item" th:href="@{/productos/admin/}">Gestión de productos</a>
 								<a class="dropdown-item" th:href="@{/categorias/admin/}">Gestión de categorías</a>
 							</div>
 						</li>
-						
-						
+
+
 					</ul>
 				</div>
 			</div>
@@ -83,11 +100,11 @@
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 	</div>
 	</div>
-	
+
 
 
 	<section class="intro">
@@ -116,36 +133,42 @@
 													<td th:text="${producto.categoria.nombre}"></td>
 													<td th:text="${producto.precio} + ' €'"></td>
 													<td th:text="${producto.calificacion}"></td>
-													
+
 													<td style="vertical-align: middle;">
 														<a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i
 																class="bi bi-info-circle-fill fs-5"></i></a>
 													</td>
 													<td style="vertical-align: middle;">
-														<a th:href="@{/productos/admin/editar/{id}/(id=${producto.id})}"><i
+														<a
+															th:href="@{/productos/admin/editar/{id}/(id=${producto.id})}"><i
 																class="bi bi-pencil-square fs-5"></i></a>
 													</td>
 													<td style="vertical-align: middle;">
-														<a href="#" data-bs-toggle="modal" th:attr="data-bs-target='#borrarProducto'+ '-' + ${producto.id}"><i class="bi bi-trash fs-5"></i></a>
+														<a href="#" data-bs-toggle="modal"
+															th:attr="data-bs-target='#borrarProducto'+ '-' + ${producto.id}"><i
+																class="bi bi-trash fs-5"></i></a>
 													</td>
-													
-													<div class="modal text-white" th:id="borrarProducto + '-' + ${producto.id}">
-													      <div class="modal-dialog remove">
-													        <div class="modal-content">
-								
-													          <div class="modal-header bg-danger border-0">
-													            <h4 class="modal-title mx-auto">¿Estas seguro?</h4>
-													            <button type="button" class="btn-close mx-0" data-bs-dismiss="modal"></button>
-													          </div>
-													
-													          
-													          <div class="modal-body bg-danger">
-													            <a class="btn bg-white text-dark mx-auto w-100" th:href="@{/productos/admin/borrar/{id}/(id=${producto.id})}">Borrar</a>
-													          </div>
-													
-													        </div>
-													      </div>
-													 </div>
+
+													<div class="modal text-white"
+														th:id="borrarProducto + '-' + ${producto.id}">
+														<div class="modal-dialog remove">
+															<div class="modal-content">
+
+																<div class="modal-header bg-danger border-0">
+																	<h4 class="modal-title mx-auto">¿Estas seguro?</h4>
+																	<button type="button" class="btn-close mx-0"
+																		data-bs-dismiss="modal"></button>
+																</div>
+
+
+																<div class="modal-body bg-danger">
+																	<a class="btn bg-white text-dark mx-auto w-100"
+																		th:href="@{/productos/admin/borrar/{id}/(id=${producto.id})}">Borrar</a>
+																</div>
+
+															</div>
+														</div>
+													</div>
 												</tr>
 											</tbody>
 										</table>
@@ -158,10 +181,12 @@
 			</div>
 		</div>
 	</section>
-	
-	
-		<a th:href="@{/productos/admin/add/}" class="btn bg-white text-dark" style="padding-top:10px; margin-left: 45%; margin-top: 20px;">Añadir producto</a>
-	
+
+
+	<a th:href="@{/productos/admin/add/}" class="btn bg-white text-dark"
+		style="padding-top:10px; margin-left: 45%; margin-top: 20px;">Añadir producto</a>
+		
+
 	<section class="section-products">
 		<div class="container">
 			<div class="row">
@@ -171,11 +196,13 @@
 							<a th:href="@{/productos/detalles/{id}/(id=${producto.id})}">
 								<img th:src="${not (#strings.isEmpty(producto.imagen))} 
 								              ? ${producto.imagen} : 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg'"
-									class="img-responsive icono-categoria" alt="Imagen del producto" style="width: 100%; height: auto;">
+									class="img-responsive icono-categoria" alt="Imagen del producto"
+									style="width: 100%; height: auto;">
 							</a>
 							<ul>
 								<li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-								<li><a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i class="fas fa-plus"></i></a></li>
+								<li><a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i
+											class="fas fa-plus"></i></a></li>
 							</ul>
 						</div>
 						<div class="part-2">

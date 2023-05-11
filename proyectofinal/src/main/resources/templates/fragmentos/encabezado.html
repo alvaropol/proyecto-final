@@ -14,46 +14,64 @@
 
 <body>
 
-		<nav class="navbar navbar-expand-lg navbar-dark" th:fragment="encabezado">
-			<div class="container-fluid">
-				<a class="navbar-brand" th:href="@{/inicio}">
-					<img src="/img/escudo.png" alt="Escudo del Sevilla FC" style="width: 192px;">
-				</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
-					aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarColor02">
-					<ul class="navbar-nav me-auto">
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/socios}">Socios</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/productos/admin/}">Tienda</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/partidos}">Partidos</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/noticias}">Noticias</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-								aria-haspopup="true" aria-expanded="false">Más</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="https://shop.sevillafc.es/pages/aviso-legal">Aviso
-									Legal</a>
-								<a class="dropdown-item" th:href="@{/clasificacion}">Clasificación</a>
-								<a class="dropdown-item" th:href="@{https://sevillafc.es/el-club/historia}">Historia de
-									nuestro
-									equipo</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" th:href="@{/contacto}">Contacta con nosotros</a>
-							</div>
-						</li>
-					</ul>
-				</div>
+	<nav class="navbar navbar-expand-lg navbar-dark" th:fragment="encabezado">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/inicio}">
+				<img src="/img/escudo.png" alt="Escudo del Sevilla FC" style="width: 192px;">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+				aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="nav navbar-nav me-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+							aria-haspopup="true" aria-expanded="false">Login</a>
+						<div class="dropdown-menu">
+							<form class="px-4 py-3" style="width: 320px; font-family: Arial;">
+								<div class="mb-3">
+									<label for="usuario" class="form-label">Usuario</label>
+									<input type="text" class="form-control" id="usuario">
+								</div>
+								<div class="mb-3">
+									<label for="contrasena" class="form-label">Contraseña</label>
+									<input type="password" class="form-control" id="contrasena">
+								</div>
+								<button type="submit" class="btn btn-danger">Iniciar sesión</button>
+							</form>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/socios}">Socios</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/productos/admin/}">Tienda</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/partidos}">Partidos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/noticias}">Noticias</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+							aria-haspopup="true" aria-expanded="false">Más</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="https://shop.sevillafc.es/pages/aviso-legal">Aviso
+								Legal</a>
+							<a class="dropdown-item" th:href="@{/clasificacion}">Clasificación</a>
+							<a class="dropdown-item" th:href="@{https://sevillafc.es/el-club/historia}">Historia de
+								nuestro
+								equipo</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/contacto}">Contacta con nosotros</a>
+						</div>
+
+					</li>
+				</ul>
 			</div>
-		</nav>
-		
+		</div>
+	</nav>
+
 </body>

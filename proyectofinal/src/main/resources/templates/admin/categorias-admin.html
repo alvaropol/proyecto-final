@@ -28,6 +28,24 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarColor02">
 					<ul class="navbar-nav me-auto">
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+								aria-haspopup="true" aria-expanded="false">Login</a>
+							<div class="dropdown-menu">
+								<form class="px-4 py-3" style="width: 320px; font-family: Arial;">
+									<div class="mb-3">
+										<label for="usuario" class="form-label">Usuario</label>
+										<input type="text" class="form-control" id="usuario">
+									</div>
+									<div class="mb-3">
+										<label for="contrasena" class="form-label">Contraseña</label>
+										<input type="password" class="form-control" id="contrasena">
+									</div>
+									<button type="submit" class="btn btn-danger">Iniciar sesión</button>
+								</form>
+							</div>
+						</li>
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{/socios}">Socios</a>
 						</li>
@@ -54,17 +72,17 @@
 								<a class="dropdown-item" th:href="@{/contacto}">Contacta con nosotros</a>
 							</div>
 						</li>
-						
+
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
 								aria-haspopup="true" aria-expanded="false">Opciones de tienda</a>
-							<div class="dropdown-menu">	
+							<div class="dropdown-menu">
 								<a class="dropdown-item" th:href="@{/productos/admin/}">Gestión de productos</a>
 								<a class="dropdown-item" th:href="@{/categorias/admin/}">Gestión de categorías</a>
 							</div>
 						</li>
-						
-						
+
+
 					</ul>
 				</div>
 			</div>
@@ -76,7 +94,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control input-text" placeholder="Buscar productos...."
+					<input type="text" class="form-control input-text" placeholder="Buscar categorías...."
 						aria-label="Recipient's username" aria-describedby="basic-addon2">
 					<div class="input-group-append">
 						<button class="btn btn-outline-warning lupa btn-lg" type="button"><i
@@ -87,8 +105,6 @@
 		</div>
 	</div>
 
-
-
 	<section class="intro">
 		<div class="bg-image h-100 productable ">
 			<div class="mask d-flex align-items-center h-100" style="background-color: rgb(224, 51, 51);">
@@ -97,9 +113,12 @@
 						<div class="col-12">
 							<div class="card bg-white shadow-2-strong">
 								<div class="card-body">
-									<div class="alert alert-warning alert-dismissible show" role="alert" th:if="${param.error}">
-									  	<span>No puedes eliminar una categoría que está asociada a un/varios producto/s</span>
-									  	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+									<div class="alert alert-warning alert-dismissible show" role="alert"
+										th:if="${param.error}">
+										<span style="font-family: Arial;">No puedes eliminar una categoría que está asociada a un/varios
+											producto/s</span>
+										<button type="button" class="btn-close" data-bs-dismiss="alert"
+											aria-label="Close"></button>
 									</div>
 									<div class="table-responsive">
 										<table class="table table-red table-borderless mb-0 text-dark">

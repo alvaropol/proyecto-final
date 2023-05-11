@@ -70,3 +70,5 @@ body {
       display: flex;
       margin-top: 10px;
     }
+    
+    #formLogin{padding: 15px; min-width:300px;}
