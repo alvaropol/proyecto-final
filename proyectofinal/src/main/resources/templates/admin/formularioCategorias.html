@@ -36,7 +36,7 @@
 									<h3 class="mb-5 text-uppercase"
 										th:text="${categoria.id} ? 'Editar categoria' : 'Añadir categoria'"></h3>
 									<form
-										th:action="${categoria.id != 0} ? @{/categorias/admin/editar/submit/} : @{/categorias/admin/add/submit/}"
+										th:action="${categoria.id != 0} ? @{/admin/categorias/editar/submit/} : @{/admin/categorias/add/submit/}"
 										th:object="${categoria}" method="POST">
 										<div class="row">
 											<div class="col-md-6 mb-4">
@@ -46,7 +46,7 @@
 														categoría</label>
 													<input required type="text" class="form-control"
 														id="nombreCategoria"
-														placeholder="Introduzca el nombre del producto" name="Nombre"
+														placeholder="Introduzca el nombre del producto" name="nombreCategoria"
 														th:field="*{nombre}">
 													<p class="errorForm my-1 text-danger">Tiene que contener un nombre
 														obligatoriamente</p>
@@ -57,7 +57,7 @@
 										<div class="form-outline mb-4">
 											<label for="imagen">URL de la imagen de la categoría</label> <input
 												type="url" class="form-control" id="imagenCategoria" placeholder="http://..."
-												th:field="*{imagen}">
+												th:field="*{imagen}" name="imagenCategoria">
 										</div>
 										
 										<div class="d-flex justify-content-end pt-3">

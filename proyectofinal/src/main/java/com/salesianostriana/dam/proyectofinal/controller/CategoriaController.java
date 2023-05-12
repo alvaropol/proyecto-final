@@ -16,7 +16,7 @@ import com.salesianostriana.dam.proyectofinal.service.CategoriaService;
 import com.salesianostriana.dam.proyectofinal.service.ProductoService;
 
 @Controller
-@RequestMapping("/categorias/admin")
+@RequestMapping("/admin/categorias")
 public class CategoriaController {
 	
 	@Autowired
@@ -41,7 +41,7 @@ public class CategoriaController {
 	@PostMapping("/add/submit/")
 	public String submitNuevaCategoria(@ModelAttribute("categoria") Categoria categoria, Model model) {
 		servicio.save(categoria);
-		return "redirect:/categorias/admin/";
+		return "redirect:/admin/categorias/";
 	}
 	
 	@GetMapping("/editar/{id}/")
@@ -56,7 +56,7 @@ public class CategoriaController {
 	@PostMapping("/editar/submit/")
 	public String submitEditarCategoria(@ModelAttribute("categoria") Categoria categoria,  Model model) {
 		servicio.edit(categoria);
-		return "redirect:/categorias/admin/";
+		return "redirect:/admin/categorias/";
 	}
 	
 	@GetMapping("/borrar/{id}/")
@@ -71,10 +71,10 @@ public class CategoriaController {
 		    }		
 		} else {
 				
-			return "redirect:/categorias/admin/?error=true";
+			return "redirect:/admin/categorias/?error=true";
 		}
 
-	    return "redirect:/categorias/admin/";
+	    return "redirect:/admin/categorias/";
 	}
 	
 }

@@ -44,11 +44,12 @@ public class SecurityConfig {
 		http
 		.authorizeRequests()
 			.antMatchers("/css/**","/js/**","/webjars/**","/img/**","/fonts/**","/h2-console/**").permitAll()
-			.antMatchers("**/admin/**").hasRole("ADMIN")
+			.antMatchers("/admin/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
 			.and()
 		.formLogin() 
 			.loginPage("/login/")
+			.defaultSuccessUrl("/")
 			.permitAll();
 		
 		http.csrf().disable();

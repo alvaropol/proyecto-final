@@ -26,7 +26,7 @@ public class Producto {
 	private String nombre;
 	private double precio;
 	private String descripcion;
-	private int calificacion;	//Del 1 al 10 
+	private int calificacion;		
 	@Lob
 	private String imagen;
 	

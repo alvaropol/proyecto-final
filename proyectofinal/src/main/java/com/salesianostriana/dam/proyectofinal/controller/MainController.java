@@ -10,17 +10,17 @@ public class MainController {
 	
 
 
-	@GetMapping({"/inicio","/"})
+	@GetMapping({"/inicio/","/"})
 	public String show() {
 		return "inicio";
 	}
 	
-	@GetMapping("/noticias")
+	@GetMapping("/noticias/")
 	public String showNotices() {
 		return "noticias";
 	}
 	
-	@GetMapping("/clasificacion")
+	@GetMapping("/clasificacion/")
 	public String showCalificacion() {
 		return "clasificacion";
 	}
@@ -33,6 +33,11 @@ public class MainController {
 	@GetMapping("/login/")
 	public String showLogIn() {
 		return "login";
+	}
+	
+	@GetMapping("/calendario/")
+	public String showCalendario() {
+		return "calendario";
 	}
 
 	

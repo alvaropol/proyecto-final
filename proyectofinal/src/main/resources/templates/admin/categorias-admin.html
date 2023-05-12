@@ -18,31 +18,34 @@
 
 	<header>
 
-		<nav class="navbar navbar-expand-lg navbar-dark" th:fragment="encabezado">
+		<nav class="navbar navbar-expand-lg navbar-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" th:href="@{/inicio}">
-					<img src="/img/escudo.png" alt="Escudo del Sevilla FC" style="width: 192px;">
+				<a class="navbar-brand" th:href="@{/inicio/}">
+					<img src="/img/escudo.png" alt="Escudo del Sevilla FC" style="width: 180px;">
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
 					aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse" id="navbarColor02">
+				<div class="collapse navbar-collapse" id="navbar" style="margin-top: 17px;">
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item">
-							<a class="nav-link" th:href="@{/login/}">Login</a>
+						  <th:block th:if="${#authentication.isAuthenticated()}">
+						  <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+						  <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+						  </th:block>
+					</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/socios/}">Socios</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" th:href="@{/socios}">Socios</a>
+							<a class="nav-link" th:href="@{/admin/productos/}">Tienda</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" th:href="@{/productos/admin/}">Tienda</a>
+							<a class="nav-link" th:href="@{/calendario/}">Partidos</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" th:href="@{/partidos}">Partidos</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/noticias}">Noticias</a>
+							<a class="nav-link" th:href="@{/noticias/}">Noticias</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -50,7 +53,7 @@
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="https://shop.sevillafc.es/pages/aviso-legal">Aviso
 									Legal</a>
-								<a class="dropdown-item" th:href="@{/clasificacion}">Clasificación</a>
+								<a class="dropdown-item" th:href="@{/clasificacion/}">Clasificación</a>
 								<a class="dropdown-item" th:href="@{https://sevillafc.es/el-club/historia}">Historia de
 									nuestro
 									equipo</a>
@@ -67,8 +70,8 @@
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
 								aria-haspopup="true" aria-expanded="false">Opciones de tienda</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" th:href="@{/productos/admin/}">Gestión de productos</a>
-								<a class="dropdown-item" th:href="@{/categorias/admin/}">Gestión de categorías</a>
+								<a class="dropdown-item" th:href="@{/admin/productos/}">Gestión de productos</a>
+								<a class="dropdown-item" th:href="@{/admin/categorias/}">Gestión de categorías</a>
 							</div>
 						</li>
 
@@ -127,7 +130,7 @@
 
 													<td style="vertical-align: middle;">
 														<a
-															th:href="@{/categorias/admin/editar/{id}/(id=${categoria.id})}"><i
+															th:href="@{/admin/categorias/editar/{id}/(id=${categoria.id})}"><i
 																class="bi bi-pencil-square fs-5"></i></a>
 													</td>
 													<td style="vertical-align: middle;">
@@ -150,7 +153,7 @@
 
 																<div class="modal-body bg-danger">
 																	<a class="btn bg-white text-dark mx-auto w-100"
-																		th:href="@{/categorias/admin/borrar/{id}/(id=${categoria.id})}">Borrar</a>
+																		th:href="@{/admin/categorias/borrar/{id}/(id=${categoria.id})}">Borrar</a>
 																</div>
 
 															</div>
@@ -170,7 +173,7 @@
 	</section>
 
 
-	<a th:href="@{/categorias/admin/add/}" class="btn bg-white text-dark"
+	<a th:href="@{/admin/categorias/add/}" class="btn bg-white text-dark"
 		style="padding-top:10px; margin-left: 45%; margin-top: 20px;">Añadir categoria</a>
 
 	<section class="section-products">

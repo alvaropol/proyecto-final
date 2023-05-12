@@ -35,7 +35,7 @@
 								<div class="card-body p-md-5 text-black">
 									<h3 class="mb-5 text-uppercase" th:text="${producto.id} ? 'Editar producto' : 'Añadir producto'"></h3>
 									<form
-										th:action="${producto.id != 0} ? @{/productos/admin/editar/submit/} : @{/productos/admin/add/submit/}"
+										th:action="${producto.id != 0} ? @{/admin/productos/editar/submit/} : @{/admin/productos/add/submit/}"
 										th:object="${producto}" method="POST">
 										<div class="row">
 											<div class="col-md-6 mb-4">
