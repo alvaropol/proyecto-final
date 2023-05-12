@@ -53,9 +53,13 @@
                         <div class="buttons d-flex flex-row mt-5 gap-3">
                              <a href="#" class="btn bg-danger text-white" style="padding-top:10px;">Añadir al carrito</a>
                         </div>
-                        <div class="buttons d-flex flex-row mt-5 gap-3">
-                             <a th:href="@{/productos/admin/}" class="btn bg-danger text-white" style="padding-top:10px;">Volver</a>
+                        <div class="buttons d-flex flex-row mt-5 gap-3" sec:authorize="hasRole('ROLE_ADMIN')">
+                             <a th:href="@{/admin/productos/}" class="btn bg-danger text-white" style="padding-top:10px;">Volver</a>
                         </div>
+                         <div class="buttons d-flex flex-row mt-5 gap-3" sec:authorize="hasRole('ROLE_USER')">
+                             <a th:href="@{/productos/}" class="btn bg-danger text-white" style="padding-top:10px;">Volver</a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
