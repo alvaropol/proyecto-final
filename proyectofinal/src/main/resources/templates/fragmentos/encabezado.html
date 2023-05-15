@@ -33,11 +33,14 @@
 						  <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
 						  </th:block>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/socios/}">Socios</a>
+					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+						<a class="nav-link" th:href="@{/admin/socios/}">Socios ADMIN</a>
+					</li>
+					<li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
+						<a class="nav-link" th:href="@{/socios/}">¡Hazte socio!</a>
 					</li>
 					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-							<a class="nav-link" th:href="@{/admin/productos/}">Tienda</a>
+							<a class="nav-link" th:href="@{/admin/productos/}">Tienda ADMIN</a>
 						</li>
 						<li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
 							<a class="nav-link" th:href="@{/productos/}">Tienda</a>

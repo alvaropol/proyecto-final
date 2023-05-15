@@ -6,7 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.salesianostriana.dam.proyectofinal.repository.UsuarioRepository;
+
+import com.salesianostriana.dam.proyectofinal.repository.SocioRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 
-	private final UsuarioRepository repo;
+	private final SocioRepository repo;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

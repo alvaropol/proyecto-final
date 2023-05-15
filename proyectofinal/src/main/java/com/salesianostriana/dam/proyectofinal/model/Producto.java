@@ -2,7 +2,6 @@ package com.salesianostriana.dam.proyectofinal.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -20,11 +19,12 @@ import lombok.NoArgsConstructor;
 public class Producto {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private long id;
 	
 	private String nombre;
 	private double precio;
+	@Lob
 	private String descripcion;
 	private int calificacion;		
 	@Lob
