@@ -63,7 +63,7 @@
 
                                         <div class="form-outline">
                                             <label class="form-label" for="dni">DNI</label>
-                                            <input type="text" maxlength="9" required id="dni" placeholder="Introduzca su DNI"
+                                            <input type="text" maxlength="9" minlength="9" required id="dni" placeholder="Introduzca su DNI"
                                                 name="dni" class="form-control form-control-lg" th:field="*{dni}" />
                                         </div>
 
@@ -159,8 +159,19 @@
 
                                         <div class="form-outline">
                                             <label for="admin" class="fs-5">Admin:</label>
-  											<input type="checkbox" id="admin" th:field="*{admin}">
+  											<input type="checkbox" id="admin" name="admin" th:field="*{admin}">
                                         </div>
+
+                                    </div>
+                                    
+                                     <div class="col-md-6 mb-4 pb-2">
+
+                                        <div class="form-outline">
+                                            <label class="fs-5" for="sociorojo">Socio rojo:</label>
+                                            <input type="checkbox" id="sociorojo" name="sociorojo" th:field="*{socioRojo}">
+
+                                        </div>
+
 
                                     </div>
    

@@ -49,6 +49,12 @@ public class SocioController {
 		return "admin/formularioSocios-admin";
 	}
 	
+	@GetMapping("/admin/socios/detalles/{id}/")
+	public String showProductDetails(@PathVariable("id") long id, Model model) {
+		model.addAttribute("socio", servicio.findById(id).get());
+		return "admin/detallesSocio-admin";
+	}
+	
 	@GetMapping("/admin/socios/borrar/{id}/")
 	public String borrarSocio(@PathVariable("id") Long id, Model model) {
 	    

@@ -124,7 +124,7 @@
 													<td th:unless="${socio.admin}">No</td>
 
 													<td style="vertical-align: middle;">
-														<a th:href="@{/socios/detalles/{id}/(id=${socio.id})}"><i
+														<a th:href="@{/admin/socios/detalles/{id}/(id=${socio.id})}"><i
 																class="bi bi-info-circle-fill fs-5"></i></a>
 													</td>
 													<td style="vertical-align: middle;">
@@ -154,6 +154,8 @@
 																	<a class="btn bg-white text-dark mx-auto w-100"
 																		th:href="@{/admin/socios/borrar/{id}/(id=${socio.id})}">Borrar</a>
 																</div>
+																
+																
 
 															</div>
 														</div>
