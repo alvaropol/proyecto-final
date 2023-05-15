@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.proyectofinal.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 
 import com.salesianostriana.dam.proyectofinal.model.Socio;
 import com.salesianostriana.dam.proyectofinal.service.SocioService;
@@ -48,6 +49,19 @@ public class SocioController {
 		return "admin/formularioSocios-admin";
 	}
 	
+	@GetMapping("/admin/socios/borrar/{id}/")
+	public String borrarSocio(@PathVariable("id") Long id, Model model) {
+	    
+		Optional<Socio> sBorrar = servicio.findById(id);
+
+	    if (sBorrar.isPresent()) {
+	        Socio socio = sBorrar.get();
+	        servicio.delete(socio);
+	    }
+
+	    return "redirect:/admin/socios/";
+	}
+	
 	@PostMapping("/admin/socios/add/submit/")
 	public String addProduct(@ModelAttribute("socio") Socio socio, Model model) {
 	
@@ -61,5 +75,7 @@ public class SocioController {
 		servicio.edit(socio);
 		return "redirect:/admin/socios/";
 	}
+	
+	
 
 }
