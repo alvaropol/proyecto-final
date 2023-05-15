@@ -21,15 +21,11 @@ Una vez en la tienda del admin, se agrega en el menú una opción llamada "Opcio
 
 Por otro lado tenemos la sección de gestión de socios, donde el admin puede añadir socios, eliminar socios, editar sus datos, y ver los detalles de cada socio.
 Como usuario en esta sección podemos rellenar un formulario que al rellenarlo, se añadirá un nuevo socio automáticamente a la base de datos, y posteriormente se le actualizará al admin en su panel de socios.
-Aclaración: Esta funcionalidad de gestión de socios al completo, aún no está implementada en la página web, por lo que en el menú al clickar en esa opción saldrá un error.
+
 Además de estas funcionalidades, cuenta con una página de inicio con historia del club, y varias páginas estáticas como clasificación, noticias, calendario de partidos, y otra de contacto con el club, 
 donde si se envia el formulario correctamente, genera una ID de mensaje en la misma plantilla de contacto (esta id es visualmente).
 
-RESUMEN: 
 
-- Hasta ahora está todo el CRUD de productos y categorías y la seguridad implementada.
-
-- Falta hacer la gestión de socios entera, y pulir algunos detalles.
 
 
  
