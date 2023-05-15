@@ -2,7 +2,7 @@
 Proyecto final de 1ºDAM -
 Gestión de un club de fútbol. (Sevilla FC)
 
-Credenciales de los dos roles de usuario para probar las funcionalidades de la págin web:
+Credenciales de los dos roles ya creados de usuario para probar las funcionalidades de la página web:
 
 Usuario:
 usuario: user / password: 1234
