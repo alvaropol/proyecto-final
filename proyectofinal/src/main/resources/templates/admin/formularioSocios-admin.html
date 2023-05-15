@@ -11,6 +11,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/tienda.css}" />
+    <script src="/js/validacionFechaFormSocio.js" defer></script>
 </head>
 
 <body>
@@ -153,6 +154,20 @@
                                     </div>
                                 </div>
                                 
+                                 <div class="row">
+                                    <div class="col-md-6 mb-4 pb-2">
+
+                                        <div class="form-outline">
+                                            <label for="admin" class="fs-5">Admin:</label>
+  											<input type="checkbox" id="admin" th:field="*{admin}">
+                                        </div>
+
+                                    </div>
+   
+                                </div>
+                                
+                                
+                                
                                  <p id="mensajeError" style="display:none; color:red;">Por favor, introduzca una fecha de nacimiento válida (debe tener más de 3 años).</p>
                                 
                                 <div class="d-flex justify-content-end pt-3">
@@ -170,25 +185,7 @@
 
                             </form>
                             
-                          
-                            
-                            <script>
- let formulario = document.getElementById("formularioSocio");
-  formulario.addEventListener("submit", function(event) {
-    event.preventDefault();
-    let fechaNacimiento = new Date(document.getElementById("fechaNacimiento").value);
-    let hoy = new Date();
-    let edadMinima = new Date();
-    edadMinima.setFullYear(edadMinima.getFullYear() - 3);
-    if (!fechaNacimiento || isNaN(fechaNacimiento) || fechaNacimiento > hoy || fechaNacimiento > edadMinima) {
-       mensajeError.style.display = "block";	
-      return false;
-    }
-mensajeError.style.display = "none";
-    this.submit();
-  });
-</script>
-
+                         
                         </div>
                     </div>
                 </div>

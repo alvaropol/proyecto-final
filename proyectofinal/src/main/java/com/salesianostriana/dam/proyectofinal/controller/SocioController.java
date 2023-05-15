@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 import com.salesianostriana.dam.proyectofinal.model.Socio;
 import com.salesianostriana.dam.proyectofinal.service.SocioService;
@@ -39,6 +41,13 @@ public class SocioController {
 		return "admin/formularioSocios-admin";
 	}
 	
+	@GetMapping("/admin/socios/editar/{id}/")
+	public String showEditForm(@PathVariable("id") long id, Model model) {
+		model.addAttribute("socio", servicio.findById(id).get());
+		model.addAttribute("listaSocios", servicio.findAll());
+		return "admin/formularioSocios-admin";
+	}
+	
 	@PostMapping("/admin/socios/add/submit/")
 	public String addProduct(@ModelAttribute("socio") Socio socio, Model model) {
 	
@@ -46,5 +55,11 @@ public class SocioController {
 		return "redirect:/admin/socios/";
 	}
 		
+	
+	@PostMapping("/admin/socios/editar/submit/")
+	public String editarSocio(@ModelAttribute("socio") Socio socio,  Model model) {
+		servicio.edit(socio);
+		return "redirect:/admin/socios/";
+	}
 
 }
