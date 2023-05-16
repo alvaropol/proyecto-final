@@ -29,7 +29,7 @@
 
 					<li class="nav-item">
 						  <th:block th:if="${#authentication.isAuthenticated()}">
-						  <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+						  <form th:action="@{/logout/}" method="POST" id="logoutForm"></form>
 						  <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
 						  </th:block>
 					</li>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" 
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<meta charset="UTF-8">
@@ -29,14 +28,15 @@
 				<div class="collapse navbar-collapse" id="navbar" style="margin-top: 17px;">
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item">
-						  <th:block th:if="${#authentication.isAuthenticated()}">
-						  <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
-						  <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
-						  </th:block>
+							<th:block th:if="${#authentication.isAuthenticated()}">
+								<form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+								<a class="nav-link"
+									href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+							</th:block>
 						</li>
 						<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-						<a class="nav-link" th:href="@{/admin/socios/}">Socios ADMIN</a>
-					</li>
+							<a class="nav-link" th:href="@{/admin/socios/}">Socios ADMIN</a>
+						</li>
 						<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
 							<a class="nav-link" th:href="@{/admin/productos/}">Tienda ADMIN</a>
 						</li>
@@ -60,9 +60,11 @@
 								<a class="dropdown-item" th:href="@{/contacto}">Contacta con nosotros</a>
 							</div>
 						</li>
-						
+
 						<li class="nav-item" style="margin-left: 20px;">
-						<a class="nav-link"><p>Bienvenido <span sec:authentication="name">Usuario</span></p></a>
+							<a class="nav-link">
+								<p>Bienvenido <span sec:authentication="name">Usuario</span></p>
+							</a>
 						</li>
 
 						<li class="nav-item dropdown" style="margin-left: 20px;">
@@ -85,15 +87,18 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control input-text" placeholder="Buscar productos...."
-						aria-label="Recipient's username" aria-describedby="basic-addon2">
-					<div class="input-group-append">
-						<button class="btn btn-outline-warning lupa btn-lg" type="button"><i
+					<form th:action="@{/admin/productos/search/}" th:object="${searchForm}" method="POST">
+						<input type="text" name="nombre" th:field="*{search}" id="nombre"
+							placeholder="Buscar productos por nombre...." style="padding: 10px; width: 500px;">
+
+						<button class="btn btn-outline-warning lupa btn-lg" type="submit"><i
 								class="bi bi-search text-white"></i></button>
-					</div>
+
+					</form>
 				</div>
 			</div>
 		</div>
+	</div>
 
 
 	</div>

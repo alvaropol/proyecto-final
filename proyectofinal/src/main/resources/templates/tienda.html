@@ -24,12 +24,14 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control input-text" placeholder="Buscar productos...."
-						aria-label="Recipient's username" aria-describedby="basic-addon2">
-					<div class="input-group-append">
-						<button class="btn btn-outline-warning lupa btn-lg" type="button"><i
+					<form th:action="@{/productos/search/}" th:object="${searchForm}" method="POST">
+						<input type="text" name="nombre" th:field="*{search}" id="nombre"
+							placeholder="Buscar productos por nombre...." style="padding: 10px; width: 500px;">
+
+						<button class="btn btn-outline-warning lupa btn-lg" type="submit"><i
 								class="bi bi-search text-white"></i></button>
-					</div>
+
+					</form>
 				</div>
 			</div>
 		</div>

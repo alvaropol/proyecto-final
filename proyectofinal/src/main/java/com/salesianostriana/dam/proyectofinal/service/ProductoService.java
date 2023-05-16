@@ -28,4 +28,8 @@ public class ProductoService
 	public int numeroProductosCategoria(Optional<Categoria> categoria) {
 		return repositorio.findNumProductosByCategoria(categoria);
 	}
+	
+	public List<Producto> findByNombre(String nombre){
+		return repository.findByNombreContainingIgnoreCase(nombre);
+	}
 }
