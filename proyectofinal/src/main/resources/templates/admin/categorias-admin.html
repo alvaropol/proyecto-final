@@ -17,11 +17,11 @@
 <body>
 
 	<header>
-
+		<form th:action="@{/logout/}" method="POST" id="logoutForm"></form>
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" th:href="@{/inicio/}">
-					<img src="/img/escudo.png" alt="Escudo del Sevilla FC" style="width: 180px;">
+					<img src="/img/escudo.png" alt="Escudo del Sevilla FC" style="width: 192px;">
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
 					aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,16 +29,16 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbar" style="margin-top: 17px;">
 					<ul class="navbar-nav me-auto">
-						<li class="nav-item">
-						  <th:block th:if="${#authentication.isAuthenticated()}">
-						  <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
-						  <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
-						  </th:block>
-					</li>
+						<li class="nav-item" sec:authorize="!isAuthenticated()">
+                        	<a href="" th:href="@{/login/}" class="nav-link">Login</a>
+                   		 </li>
+						<li class="nav-item" sec:authorize="isAuthenticated()">	
+							<a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+						</li>
 						<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-						<a class="nav-link" th:href="@{/admin/socios/}">Socios ADMIN</a>
-					</li>
-						<li class="nav-item">
+							<a class="nav-link" th:href="@{/admin/socios/}">Socios ADMIN</a>
+						</li>
+						<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
 							<a class="nav-link" th:href="@{/admin/productos/}">Tienda ADMIN</a>
 						</li>
 						<li class="nav-item">
@@ -63,17 +63,11 @@
 						</li>
 
 						<li class="nav-item" style="margin-left: 20px;">
-						<a class="nav-link"><p>Bienvenido <span sec:authentication="name">Usuario</span></p></a>
+							<a class="nav-link">
+								<p>Bienvenido <span sec:authentication="name">Usuario</span></p>
+							</a>
 						</li>
 
-						<li class="nav-item dropdown" style="margin-left: 20px;">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-								aria-haspopup="true" aria-expanded="false">Opciones de tienda</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" th:href="@{/admin/productos/}">Gestión de productos</a>
-								<a class="dropdown-item" th:href="@{/admin/categorias/}">Gestión de categorías</a>
-							</div>
-						</li>
 
 
 					</ul>
@@ -87,12 +81,14 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control input-text" placeholder="Buscar categorías...."
-						aria-label="Recipient's username" aria-describedby="basic-addon2">
-					<div class="input-group-append">
-						<button class="btn btn-outline-warning lupa btn-lg" type="button"><i
+					<form th:action="@{/admin/categorias/search/}" th:object="${searchForm}" method="POST">
+						<input type="text" name="nombre" th:field="*{search}" id="nombre"
+							placeholder="Buscar categorias por nombre...." style="padding: 10px; width: 500px;">
+
+						<button class="btn btn-outline-warning lupa btn-lg" type="submit"><i
 								class="bi bi-search text-white"></i></button>
-					</div>
+
+					</form>
 				</div>
 			</div>
 		</div>

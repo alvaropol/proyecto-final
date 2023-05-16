@@ -44,9 +44,9 @@ public class Socio implements UserDetails {
 	private boolean socioRojo;
 	
 	@Builder.Default
-	private int cantidadCompras=0;
+	private int cantidadCompras=0; //Si el socio pasa de las 10 compras, pasará a ser un socio rojo
 	@Builder.Default
-	private double dineroGastado=0.0;
+	private double dineroGastado=0.0; //Si el socio gasta más de 150 euros en la tienda, tendrá descuentos en las próximas compras
 	
 	@Lob
 	private String imagen;

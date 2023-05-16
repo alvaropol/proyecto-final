@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.salesianostriana.dam.proyectofinal.formbeans.SearchBean;
 import com.salesianostriana.dam.proyectofinal.model.Categoria;
 import com.salesianostriana.dam.proyectofinal.service.CategoriaService;
 import com.salesianostriana.dam.proyectofinal.service.ProductoService;
@@ -29,6 +30,7 @@ public class CategoriaController {
 	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("listaCategorias", servicio.findAll());
+		model.addAttribute("searchForm", new SearchBean());
 		return "admin/categorias-admin";
 	}
 	
@@ -75,6 +77,14 @@ public class CategoriaController {
 		}
 
 	    return "redirect:/admin/categorias/";
+	}
+	
+	@PostMapping("/search/")
+	public String searchCategoriasAdmin(@ModelAttribute("searchForm") SearchBean searchBean, Model model) {
+		model.addAttribute("listaCategorias", servicio.findByNombre(searchBean.getSearch()));
+		
+			return "admin/categorias-admin";
+		
 	}
 	
 }

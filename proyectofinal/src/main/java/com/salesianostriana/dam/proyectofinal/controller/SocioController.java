@@ -25,8 +25,9 @@ public class SocioController {
 	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("/hazte-socio/")
-	public String showSocios(Model model) {
-
+	public String showFormSocios(Model model) {
+		Socio socio = new Socio();
+		model.addAttribute("socio",socio);
 		return "formularioSocios";
 	}
 
@@ -53,7 +54,7 @@ public class SocioController {
 	}
 
 	@GetMapping("/admin/socios/detalles/{id}/")
-	public String showProductDetails(@PathVariable("id") long id, Model model) {
+	public String showSocioDetails(@PathVariable("id") long id, Model model) {
 		model.addAttribute("socio", servicio.findById(id).get());
 		return "admin/detallesSocio-admin";
 	}
@@ -70,9 +71,24 @@ public class SocioController {
 
 		return "redirect:/admin/socios/";
 	}
+	
+	@PostMapping("/socios/add/submit/")
+	public String addSocio(@ModelAttribute("socio") Socio socio, Model model) {
+		
+		for(Socio s : servicio.findAll()) {
+			if(s.getUsername().equals(socio.getUsername())) {
+				model.addAttribute("error", "El nombre de usuario no está disponible, introduzca otro distinto");
+	            return "formularioSocios";
+			}
+		}
+		
+		socio.setPassword(passwordEncoder.encode(socio.getPassword()));
+	    servicio.save(socio);
+		return "successAddSocio";
+	}
 
 	@PostMapping("/admin/socios/add/submit/")
-	public String addProduct(@ModelAttribute("socio") Socio socio, Model model) {
+	public String addSocioAdmin(@ModelAttribute("socio") Socio socio, Model model) {
 		
 		for(Socio s : servicio.findAll()) {
 			if(s.getUsername().equals(socio.getUsername())) {
@@ -95,7 +111,7 @@ public class SocioController {
 	}
 
 	@PostMapping("/admin/socios/search/")
-	public String searchProductoAdmin(@ModelAttribute("searchForm") SearchBean searchBean, Model model) {
+	public String searchSocioAdmin(@ModelAttribute("searchForm") SearchBean searchBean, Model model) {
 		model.addAttribute("listaSocios", servicio.findByDni(searchBean.getSearch()));
 
 		return "admin/socios-admin";

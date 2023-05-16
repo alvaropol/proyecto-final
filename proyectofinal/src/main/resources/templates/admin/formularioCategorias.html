@@ -11,7 +11,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-	<link rel="stylesheet" th:href="@{/css/tienda.css}" />
+	<link rel="stylesheet" th:href="@{/css/tienda.css}"/>
+	<script src="/js/validacionFormCategorias.js" defer></script>
 </head>
 
 <body>
@@ -37,7 +38,7 @@
 										th:text="${categoria.id} ? 'Editar categoria' : 'Añadir categoria'"></h3>
 									<form
 										th:action="${categoria.id != 0} ? @{/admin/categorias/editar/submit/} : @{/admin/categorias/add/submit/}"
-										th:object="${categoria}" method="POST">
+										th:object="${categoria}" method="POST" id="formularioCategorias">
 										<div class="row">
 											<div class="col-md-6 mb-4">
 												<input type="hidden" th:field="*{id}" id="id" />
@@ -45,11 +46,12 @@
 													<label for="nombreCategoria" class="form-label">Nombre de la
 														categoría</label>
 													<input required type="text" class="form-control"
-														id="nombreCategoria"
-														placeholder="Introduzca el nombre del producto" name="nombreCategoria"
+														id="nombre"
+														placeholder="Introduzca el nombre del producto" name="nombre"
 														th:field="*{nombre}">
 													<p class="errorForm my-1 text-danger">Tiene que contener un nombre
 														obligatoriamente</p>
+													<p id="mensajeErrorNombre" style="display:none; color:red;">El nombre solo puede contener letras.</p>
 												</div>
 											</div>
 										</div>
