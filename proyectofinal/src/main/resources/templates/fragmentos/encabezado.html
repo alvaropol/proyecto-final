@@ -41,10 +41,10 @@
 					</li>
 					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
 							<a class="nav-link" th:href="@{/admin/productos/}">Tienda ADMIN</a>
-						</li>
-						<li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
+					</li>
+					<li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
 							<a class="nav-link" th:href="@{/productos/}">Tienda</a>
-						</li>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" th:href="@{/calendario/}">Partidos</a>
 					</li>

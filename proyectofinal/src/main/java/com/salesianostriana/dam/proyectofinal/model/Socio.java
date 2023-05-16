@@ -39,9 +39,15 @@ public class Socio implements UserDetails {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaNacimiento;
-	
+
 	private String direccion, telefono, email,username, password;
 	private boolean socioRojo;
+	
+	@Builder.Default
+	private int cantidadCompras=0;
+	@Builder.Default
+	private double dineroGastado=0.0;
+	
 	@Lob
 	private String imagen;
 	

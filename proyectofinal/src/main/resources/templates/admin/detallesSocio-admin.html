@@ -21,7 +21,7 @@
 	
 	<main>
 
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5 mb-5" style="font-family: Arial;">
         <div class="card">
             <div class="row g-0">
                 <div class="col-md-6 border-end">
@@ -34,15 +34,23 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="p-3 right-side">
+                    <div class="p-3 right-side" style="margin-left: 30px; margin-top: 30px;">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h3 th:text="${socio.nombre} + ${socio.apellidos}"></h3>
+                            <h3 th:text="${socio.nombre} + ' ' + ${socio.apellidos}"></h3>
                         </div>
                          <div class="d-flex justify-content-between align-items-center">
-                            <h3 th:text="'DNI: ' + ${socio.dni}"></h3>
+                            <h4 th:text="'DNI: ' + ${socio.dni}"></h4>
                         </div>
                          <div class="mt-2 pr-3 content">
                             <p class="parrafo fs-6" th:text="'Fecha de nacimiento: ' +${#temporals.format(socio.fechaNacimiento, 'dd/MM/yyyy')}"></p>
+                        </div>
+                        
+                        <div class="mt-2 pr-3 content">
+                            <p class="parrafo fs-6" th:text="'Cantidad de compras: ' +${socio.cantidadCompras}"></p>
+                        </div>
+                        
+                        <div class="mt-2 pr-3 content">
+                            <p class="parrafo fs-6" th:text="'Dinero gastado: ' +${socio.dineroGastado}"></p>
                         </div>
                         
                         <div class="mt-2 pr-3 content">
@@ -64,7 +72,7 @@
                            <span th:text="${socio.admin} ? 'Admin: Sí' : 'Admin: No'"></span>
                         </div>
 
-                        <div class="buttons d-flex flex-row mt-5 gap-3">
+                        <div class="buttons mt-4 gap-3" style="margin-left: 60%;">
 		                     <a th:href="@{/admin/socios/}" class="btn bg-danger text-white" style="padding-top:10px;">Volver</a>
 		                </div>
                     </div>

@@ -55,18 +55,22 @@
 							Equipo
 						</h6>
 						<p>
-							<a th:href="@{/partidos}" class="text-reset">Partidos</a>
+							<a th:href="@{/calendario/}" class="text-reset">Partidos</a>
 						</p>
 						<p>
-							<a th:href="@{/noticias}" class="text-reset">Noticias</a>
+							<a th:href="@{/noticias/}" class="text-reset">Noticias</a>
 						</p>
 						<p>
 							<a href="https://www.sevillafc.es/tour-sevillafc?_ga=2.8427189.1273339710.1678729368-1886558505.1678729368"
 								class="text-reset">Tour Sanchéz-Pizjuán</a>
 						</p>
-						<p>
-							<a th:href="@{/productos}" class="text-reset">Tienda</a>
+						<p sec:authorize="hasRole('ROLE_ADMIN')">
+							<a th:href="@{/admin/productos/}" class="text-reset">Tienda</a>
 						</p>
+						<p sec:authorize="hasRole('ROLE_USER')">
+							<a th:href="@{/productos/}" class="text-reset">Tienda</a>
+						</p>
+						
 					</div>
 					<!-- Grid column -->
 

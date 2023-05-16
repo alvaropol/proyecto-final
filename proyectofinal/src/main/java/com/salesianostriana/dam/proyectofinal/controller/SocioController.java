@@ -3,6 +3,7 @@ package com.salesianostriana.dam.proyectofinal.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,9 @@ import com.salesianostriana.dam.proyectofinal.service.SocioService;
 public class SocioController {
 	
 	@Autowired
-	
 	private SocioService servicio;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	
 	
@@ -70,7 +72,7 @@ public class SocioController {
 	
 	@PostMapping("/admin/socios/add/submit/")
 	public String addProduct(@ModelAttribute("socio") Socio socio, Model model) {
-	
+		socio.setPassword(passwordEncoder.encode(socio.getPassword()));
 		servicio.save(socio);
 		return "redirect:/admin/socios/";
 	}
