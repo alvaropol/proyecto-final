@@ -26,8 +26,7 @@ public class SocioController {
 
 	@GetMapping("/hazte-socio/")
 	public String showFormSocios(Model model) {
-		Socio socio = new Socio();
-		model.addAttribute("socio",socio);
+		model.addAttribute("socio",new Socio());
 		return "formularioSocios";
 	}
 
@@ -40,23 +39,38 @@ public class SocioController {
 
 	@GetMapping("/admin/socios/add/")
 	public String showForm(Model model) {
-		Socio socio = new Socio();
-		model.addAttribute("socio", socio);
+
+		model.addAttribute("socio", new Socio());
 		model.addAttribute("listaSocios", servicio.findAll());
 		return "admin/formularioSocios-admin";
 	}
 
 	@GetMapping("/admin/socios/editar/{id}/")
 	public String showEditForm(@PathVariable("id") long id, Model model) {
-		model.addAttribute("socio", servicio.findById(id));
 		model.addAttribute("listaSocios", servicio.findAll());
-		return "admin/formularioSocios-admin";
+		Optional<Socio> optionalSocio = servicio.findById(id);
+		Socio socio = optionalSocio.get();
+		
+		if(optionalSocio.isPresent()) {
+			model.addAttribute("socio",socio);
+			return "admin/formularioSocios-admin";
+		}else {
+			return "redirect:/admin/socios/";
+		}
+		
 	}
 
 	@GetMapping("/admin/socios/detalles/{id}/")
 	public String showSocioDetails(@PathVariable("id") long id, Model model) {
-		model.addAttribute("socio", servicio.findById(id));
-		return "admin/detallesSocio-admin";
+		Optional<Socio> optionalSocio = servicio.findById(id);
+		Socio socio = optionalSocio.get();
+		
+		if(optionalSocio.isPresent()) {
+			model.addAttribute("socio",socio);
+			return "admin/detallesSocio-admin";
+		}else {
+			return "redirect:/admin/socios/";
+		}
 	}
 
 	@GetMapping("/admin/socios/borrar/{id}/")
@@ -64,7 +78,7 @@ public class SocioController {
 
 		Optional<Socio> sBorrar = servicio.findById(id);
 
-		if (sBorrar.isPresent()) {
+		if (sBorrar.isPresent ()) {
 			Socio socio = sBorrar.get();
 			servicio.delete(socio);
 		}
@@ -102,26 +116,12 @@ public class SocioController {
 	    return "redirect:/admin/socios/";
 	}
 	
-	
-	@GetMapping("/socios/editar/{id}/")
-	public String showEditFormUser(@PathVariable("id") long id, Model model) {
-		model.addAttribute("socio", servicio.findById(id));
-		model.addAttribute("listaSocios", servicio.findAll());
-		return "editarFormSocio";
-	}
-	
-
 	@PostMapping("/admin/socios/editar/submit/")
 	public String editarSocioAdmin(@ModelAttribute("socio") Socio socio, Model model) {
 		servicio.edit(socio);
 		return "redirect:/admin/socios/";
 	}
-	
-	@PostMapping("/socios/editar/submit/")
-	public String editarSocio(@ModelAttribute("socio") Socio socio, Model model) {
-		servicio.edit(socio);
-		return "redirect:/inicio/";
-	}
+
 
 	@PostMapping("/admin/socios/search/")
 	public String searchSocioAdmin(@ModelAttribute("searchForm") SearchBean searchBean, Model model) {

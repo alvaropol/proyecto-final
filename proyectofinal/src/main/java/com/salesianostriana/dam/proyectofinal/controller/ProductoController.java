@@ -49,16 +49,29 @@ public class ProductoController {
 
 	@GetMapping("/admin/productos/editar/{id}/")
 	public String showEditForm(@PathVariable("id") long id, Model model) {
-		model.addAttribute("producto", servicioProducto.findById(id));
 		model.addAttribute("listaProductos", servicioProducto.findAll());
 		model.addAttribute("listaCategorias", servicioCategoria.findAll());
-		return "admin/formularioProducto";
+		Optional<Producto> optionalProducto = servicioProducto.findById(id);
+		Producto producto = optionalProducto.get();
+		
+		if(optionalProducto.isPresent()) {
+			model.addAttribute("producto",producto);
+			return "admin/formularioProducto";
+		}else {
+			return "redirect:/admin/productos/";
+		}
 	}
 
 	@GetMapping("productos/detalles/{id}/")
 	public String showProductDetails(@PathVariable("id") long id, Model model) {
-		model.addAttribute("producto", servicioProducto.findById(id));
-		return "detallesProducto";
+		Optional<Producto> optionalProducto = servicioProducto.findById(id);
+		Producto producto = optionalProducto.get();
+		if(optionalProducto.isPresent()) {
+			model.addAttribute("producto",producto);
+			return "detallesProducto";
+		}else {
+			return "redirect:/productos/";
+		}
 	}
 
 	@PostMapping("/admin/productos/add/submit/")
@@ -68,11 +81,10 @@ public class ProductoController {
 	}
 
 	@PostMapping("/admin/productos/editar/submit/")
-	public String editarProducto(@ModelAttribute("producto") Optional<Producto> producto, Model model) {
+	public String editarProducto(@ModelAttribute("producto") Producto producto, Model model) {
 
-		if (producto.isPresent()) {
-			servicioProducto.edit(producto.get());
-		}
+			servicioProducto.edit(producto);
+
 		return "redirect:/admin/productos/";
 	}
 

@@ -1,7 +1,9 @@
 package com.salesianostriana.dam.proyectofinal.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 public class LineaVenta {
 	
 	@Id
@@ -22,5 +25,10 @@ public class LineaVenta {
 	
 	private int cantidad, descuento; //El descuento solo podrá ir de 0 a 100%
 	
-	//Falta implementar el producto
+	@ManyToOne
+	private Producto producto;
+
+	@ManyToOne
+	private Venta venta;
+
 }

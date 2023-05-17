@@ -48,11 +48,18 @@ public class CategoriaController {
 	
 	@GetMapping("/editar/{id}/")
 	public String editarCategoria(@PathVariable("id") Long id, Model model) {
-		
-		model.addAttribute("categoria", servicio.findById(id));
+
 		model.addAttribute("listaCategorias", servicio.findAll());
 
-		return "admin/formularioCategorias";
+		Optional<Categoria> optionalCategoria = servicio.findById(id);
+		Categoria categoria = optionalCategoria.get();
+		
+		if(optionalCategoria.isPresent()) {
+			model.addAttribute("categoria",categoria);
+			return "admin/formularioCategorias";
+		}else {
+			return "redirect:/admin/categorias/";
+		}
 	}
 	
 	@PostMapping("/editar/submit/")
