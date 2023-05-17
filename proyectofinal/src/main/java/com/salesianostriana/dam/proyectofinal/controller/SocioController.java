@@ -103,11 +103,24 @@ public class SocioController {
 	}
 	
 	
+	@GetMapping("/socios/editar/{id}/")
+	public String showEditFormUser(@PathVariable("id") long id, Model model) {
+		model.addAttribute("socio", servicio.findById(id).get());
+		model.addAttribute("listaSocios", servicio.findAll());
+		return "editarFormSocio";
+	}
+	
 
 	@PostMapping("/admin/socios/editar/submit/")
-	public String editarSocio(@ModelAttribute("socio") Socio socio, Model model) {
+	public String editarSocioAdmin(@ModelAttribute("socio") Socio socio, Model model) {
 		servicio.edit(socio);
 		return "redirect:/admin/socios/";
+	}
+	
+	@PostMapping("/socios/editar/submit/")
+	public String editarSocio(@ModelAttribute("socio") Socio socio, Model model) {
+		servicio.edit(socio);
+		return "redirect:/inicio/";
 	}
 
 	@PostMapping("/admin/socios/search/")

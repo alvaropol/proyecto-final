@@ -45,7 +45,7 @@ public class SecurityConfig {
 		.authorizeRequests()
 			.antMatchers("/css/**","/js/**","/webjars/**","/img/**","/fonts/**","/h2-console/**").permitAll()
 			.antMatchers("/admin/**").hasRole("ADMIN")
-			.anyRequest().authenticated()
+			.anyRequest().permitAll()
 			.and()
 		.formLogin() 
 			.loginPage("/login/")
