@@ -15,7 +15,6 @@ import com.salesianostriana.dam.proyectofinal.model.Producto;
 import com.salesianostriana.dam.proyectofinal.service.CategoriaService;
 import com.salesianostriana.dam.proyectofinal.service.ProductoService;
 
-
 @Controller
 public class ProductoController {
 
@@ -24,7 +23,6 @@ public class ProductoController {
 
 	@Autowired
 	private CategoriaService servicioCategoria;
-	
 
 	@GetMapping("/productos/")
 	public String showTienda(Model model) {
@@ -51,7 +49,7 @@ public class ProductoController {
 
 	@GetMapping("/admin/productos/editar/{id}/")
 	public String showEditForm(@PathVariable("id") long id, Model model) {
-		model.addAttribute("producto", servicioProducto.findById(id).get());
+		model.addAttribute("producto", servicioProducto.findById(id));
 		model.addAttribute("listaProductos", servicioProducto.findAll());
 		model.addAttribute("listaCategorias", servicioCategoria.findAll());
 		return "admin/formularioProducto";
@@ -59,7 +57,7 @@ public class ProductoController {
 
 	@GetMapping("productos/detalles/{id}/")
 	public String showProductDetails(@PathVariable("id") long id, Model model) {
-		model.addAttribute("producto", servicioProducto.findById(id).get());
+		model.addAttribute("producto", servicioProducto.findById(id));
 		return "detallesProducto";
 	}
 
@@ -70,8 +68,11 @@ public class ProductoController {
 	}
 
 	@PostMapping("/admin/productos/editar/submit/")
-	public String editarProducto(@ModelAttribute("producto") Producto producto, Model model) {
-		servicioProducto.edit(producto);
+	public String editarProducto(@ModelAttribute("producto") Optional<Producto> producto, Model model) {
+
+		if (producto.isPresent()) {
+			servicioProducto.edit(producto.get());
+		}
 		return "redirect:/admin/productos/";
 	}
 
@@ -91,16 +92,16 @@ public class ProductoController {
 	@PostMapping("/admin/productos/search/")
 	public String searchProductoAdmin(@ModelAttribute("searchForm") SearchBean searchBean, Model model) {
 		model.addAttribute("listaProductos", servicioProducto.findByNombre(searchBean.getSearch()));
-		
-			return "admin/tienda-admin";
-		
+
+		return "admin/tienda-admin";
+
 	}
-	
+
 	@PostMapping("/productos/search/")
 	public String searchProducto(@ModelAttribute("searchForm") SearchBean searchBean, Model model) {
 		model.addAttribute("listaProductos", servicioProducto.findByNombre(searchBean.getSearch()));
-		
-			return "tienda";
-		
+
+		return "tienda";
+
 	}
 }

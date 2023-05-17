@@ -48,14 +48,14 @@ public class SocioController {
 
 	@GetMapping("/admin/socios/editar/{id}/")
 	public String showEditForm(@PathVariable("id") long id, Model model) {
-		model.addAttribute("socio", servicio.findById(id).get());
+		model.addAttribute("socio", servicio.findById(id));
 		model.addAttribute("listaSocios", servicio.findAll());
 		return "admin/formularioSocios-admin";
 	}
 
 	@GetMapping("/admin/socios/detalles/{id}/")
 	public String showSocioDetails(@PathVariable("id") long id, Model model) {
-		model.addAttribute("socio", servicio.findById(id).get());
+		model.addAttribute("socio", servicio.findById(id));
 		return "admin/detallesSocio-admin";
 	}
 
@@ -105,7 +105,7 @@ public class SocioController {
 	
 	@GetMapping("/socios/editar/{id}/")
 	public String showEditFormUser(@PathVariable("id") long id, Model model) {
-		model.addAttribute("socio", servicio.findById(id).get());
+		model.addAttribute("socio", servicio.findById(id));
 		model.addAttribute("listaSocios", servicio.findAll());
 		return "editarFormSocio";
 	}

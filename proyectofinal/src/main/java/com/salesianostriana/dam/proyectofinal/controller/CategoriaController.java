@@ -49,7 +49,7 @@ public class CategoriaController {
 	@GetMapping("/editar/{id}/")
 	public String editarCategoria(@PathVariable("id") Long id, Model model) {
 		
-		model.addAttribute("categoria", servicio.findById(id).get());
+		model.addAttribute("categoria", servicio.findById(id));
 		model.addAttribute("listaCategorias", servicio.findAll());
 
 		return "admin/formularioCategorias";

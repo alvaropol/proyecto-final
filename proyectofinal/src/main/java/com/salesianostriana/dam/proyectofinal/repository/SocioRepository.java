@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.salesianostriana.dam.proyectofinal.model.Socio;
 
-
-
 public interface SocioRepository 
 					extends JpaRepository<Socio, Long>{
 
