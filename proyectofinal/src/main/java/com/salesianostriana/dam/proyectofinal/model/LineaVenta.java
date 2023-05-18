@@ -1,9 +1,10 @@
 package com.salesianostriana.dam.proyectofinal.model;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,18 +18,20 @@ import lombok.NoArgsConstructor;
 @Entity
 public class LineaVenta {
 	
-	@Id
-	@GeneratedValue
-	private long id;
+	@EmbeddedId
+	@Builder.Default
+	private LineaVentaPK lineaventaPK = new LineaVentaPK();
 	
 	private double pvp;
-	
-	private int cantidad, descuento; //El descuento solo podrá ir de 0 a 100%
+	private int descuento; //El descuento solo podrá ir de 0 a 100%
+	private double subtotal;
 	
 	@ManyToOne
 	private Producto producto;
 
 	@ManyToOne
+	@MapsId("venta_id")
+	@JoinColumn(name="venta_id")
 	private Venta venta;
 
 }

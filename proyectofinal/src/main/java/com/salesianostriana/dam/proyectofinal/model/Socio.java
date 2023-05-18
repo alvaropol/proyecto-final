@@ -33,7 +33,7 @@ public class Socio implements UserDetails {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	
 	private String nombre, apellidos, dni;
 	
