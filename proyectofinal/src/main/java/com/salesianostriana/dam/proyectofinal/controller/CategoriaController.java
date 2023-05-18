@@ -26,12 +26,12 @@ public class CategoriaController {
 	@Autowired
 	private ProductoService productoService;
 
-	
 	@GetMapping("/")
-	public String index(Model model) {
+	public String index(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("listaCategorias", servicio.findAll());
 		model.addAttribute("searchForm", new SearchBean());
 		return "admin/categorias-admin";
+		
 	}
 	
 	@GetMapping("/add/")

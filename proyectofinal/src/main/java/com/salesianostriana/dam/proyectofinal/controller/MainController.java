@@ -39,10 +39,5 @@ public class MainController {
 	public String showCalendario() {
 		return "calendario";
 	}
-	@GetMapping("/carrito/")
-	public String showCarrito() {
-		return "carrito";
-	}
-
 	
 }
