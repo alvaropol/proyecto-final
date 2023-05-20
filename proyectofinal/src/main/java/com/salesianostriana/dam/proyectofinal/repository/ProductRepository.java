@@ -13,7 +13,7 @@ import com.salesianostriana.dam.proyectofinal.model.Producto;
 public interface ProductRepository
 					extends JpaRepository<Producto, Long>{
 	
-public List<Producto> findByCategoria(Categoria categoria);
+	public List<Producto> findByCategoria(Categoria categoria);
 	
 	@Query("select p.id from Producto p")
 	public List<Long> obtenerIds();
@@ -23,5 +23,7 @@ public List<Producto> findByCategoria(Categoria categoria);
 	
 	@Query("select count(p) from Producto p where p.categoria = ?1")
 	public int findNumProductosByCategoria(Optional<Categoria> categoria);
+	
+	public List<Producto> findByNombreContainingIgnoreCase(String nombre);
 
 }

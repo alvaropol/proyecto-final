@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es"xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" th:href="@{/css/inicio.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 
     <main>
 
-        <section class="h-100">
+        <section class="h-100 w-100">
             <div class="container h-100 py-5">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-10 w-100">
@@ -30,28 +30,32 @@
                             <h3 class="fw-normal mb-0 text-white">Carrito de compra</h3>
                         </div>
 
-                        <div class="card rounded-3 mb-4">
+                        <div class="card rounded-3 mb-4" th:each="element : ${productos.entrySet()}">
                             <div class="card-body p-4">
                                 <div class="row d-flex justify-content-between align-items-center">
                                     <div class="col-md-2 col-lg-2 col-xl-2">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                                        <img th:src="${#strings.isEmpty(element.key.imagen)} ? 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg' : ${element.key.imagen}"
                                             class="img-fluid rounded-3" alt="Cotton T-shirt">
                                     </div>
                                     <div class=" col-lg-3 col-xl-3">
-                                        <p class="lead fw-normal mb-2" style="color: black;">Basic T-shirt</p>
-                                        <p><span class="text-muted" style="font-family: Arial;">Categoria:</span> <span style="color:black">Accesorio</span>
+                                        <p class="lead fw-normal mb-2" style="color: black;" th:text="${element.key.nombre}">Nombre producto</p>
+                                        <p><span class="text-muted" style="font-family: Arial;">Categoria:</span> <span style="color:black; font-family: Arial;" th:text="${element.key.categoria.nombre}">Nombre categoria</span>
                                     </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                    <div class="col-lg-3 col-xl-3">
+										 <p class="lead fw-normal mb-2" style="color: black;">Cantidad</p>
+                                        <input class="form-control" id="inputQuantity" th:value="${element.value}" type="text"/>
 
-                                        <input id="form1" min="0" name="quantity" value="2" type="number"
-                                            class="form-control form-control-sm" />
+                                    </div>
+                                    
+                                    <div class=" col-lg-3 col-xl-3">
+                                        <p class="lead fw-normal mb-2" style="color: black;">Precio</p>
+                                        <p><span class="text-muted" style="font-family: Arial;" th:text="${element.key.precio} + '€'">precio</span>
+                                        <p class="lead fw-normal mb-2" style="color: black;">Subtotal</p>
+                                        <p><span class="text-muted" style="font-family: Arial;" th:text="${element.key.precio * element.value} + '€'">subt</span></p>
+                                    </div>
 
-                                    </div>
-                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                        <h5 class="mb-0">$499.00</h5>
-                                    </div>
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                        <a href="#!" class="text-danger"><i class="fas fa-trash"></i></a>
+                                        <a th:href="@{/borrarProducto/{id}/(id=${element.key.id})}" class="text-danger"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -59,8 +63,13 @@
 
                         <hr>
                         <div class="card">
-                            <div class="card-body" style="text-align: right;">
-                                <a href="" class="btn btn-danger fs-5">Comprar</a>
+							<div class="card-body" style="text-align: right;" sec:authorize="hasRole('ROLE_ADMIN')">
+								 <a th:href="@{/admin/productos/}" class="btn btn-danger fs-5">Volver</a>
+                                <a th:href="@{/carrito/checkout/}" class="btn btn-danger fs-5">Comprar</a>
+                            </div>
+                            <div class="card-body" style="text-align: right;" sec:authorize="hasRole('ROLE_USER')">
+								 <a th:href="@{/productos/}" class="btn btn-danger fs-5">Volver</a>
+                                <a th:href="@{/carrito/checkout/}" class="btn btn-danger fs-5">Comprar</a>
                             </div>
                         </div>
 
