@@ -51,7 +51,7 @@
                             <p class="parrafo fs-6" th:text="'Categoria: '+${producto.categoria.nombre}"></p>
                         </div>
                         <div class="buttons d-flex flex-row mt-5 gap-3">
-                             <a href="#" class="btn bg-danger text-white" style="padding-top:10px;">Añadir al carrito</a>
+                             <a th:href="@{/productoACarrito/{id}/(id=${producto.id})}" class="btn bg-danger text-white" style="padding-top:10px;">Añadir al carrito</a>
                         </div>
                         <div class="buttons d-flex flex-row mt-5 gap-3" sec:authorize="hasRole('ROLE_ADMIN')">
                              <a th:href="@{/admin/productos/}" class="btn bg-danger text-white" style="padding-top:10px;">Volver</a>

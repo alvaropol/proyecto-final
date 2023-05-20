@@ -1,16 +1,16 @@
 package com.salesianostriana.dam.proyectofinal.controller;
 
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.salesianostriana.dam.proyectofinal.model.Producto;
+import com.salesianostriana.dam.proyectofinal.model.Socio;
 import com.salesianostriana.dam.proyectofinal.service.ProductoService;
 import com.salesianostriana.dam.proyectofinal.service.VentaService;
 
@@ -28,6 +28,7 @@ public class VentaController {
     public String showCarrito (Model model) {
 		if (model.addAttribute("productos",servicioVenta.getProductsInCart()) == null)
     		return "redirect:/";
+		model.addAttribute("total", servicioVenta.totalCarrito());
     	return "carrito";
     }
 	
@@ -44,7 +45,7 @@ public class VentaController {
 	    	return "redirect:/carrito/";
 	    }
 	 
-	    @GetMapping("/borrarProducto/{id}")
+	    @GetMapping("/borrarProducto/{id}/")
 	    public String removeProductFromCart(@PathVariable("id") Long id) {
 	        
 	    	Optional<Producto> optionalProducto = productoService.findById(id);
@@ -56,21 +57,18 @@ public class VentaController {
 	        return "redirect:/carrito/";
 	    }
 	    
-	    @ModelAttribute("total_carrito")
-	    public Double totalCarrito () {
+	    @GetMapping("/carrito/checkout/")
+	    public String checkoutCarrito(@AuthenticationPrincipal Socio s) {
+	    	servicioVenta.checkoutCompra(s);
 	    	
-	    	Map <Producto,Integer> carrito=servicioVenta.getProductsInCart();
-	    	double total=0.0;
-	    	if (carrito !=null) {
-	        	for (Producto p: carrito.keySet()) {
-	        		       		
-	        		total+=p.getPrecio()*carrito.get(p);
-	        	}
-	        	return total;
+	    	if(s.isAdmin()) {
+	    		return "redirect:/admin/productos/";
+	    	}else {
+	    		return "redirect:/productos/";
 	    	}
-	    	
-	    	return 0.0;
 	    }
+
+	   
 	    
 	    
 }

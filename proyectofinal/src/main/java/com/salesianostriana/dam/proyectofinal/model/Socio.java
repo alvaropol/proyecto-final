@@ -1,13 +1,16 @@
 package com.salesianostriana.dam.proyectofinal.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,7 +20,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -44,14 +49,20 @@ public class Socio implements UserDetails {
 	private boolean socioRojo;
 	
 	@Builder.Default
-	private int cantidadCompras=0; //Si el socio pasa de las 10 compras, pasará a ser un socio rojo
+	private int cantidadCompras=0; //Si el socio pasa de las 5 compras, pasará a ser un socio rojo
 	@Builder.Default
-	private double dineroGastado=0.0; //Si el socio gasta más de 150 euros en la tienda, tendrá descuentos en las próximas compras
+	private double dineroGastado=0.0; 
 	
 	@Lob
 	private String imagen;
 	
 	private boolean admin;
+	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy = "socio", fetch = FetchType.EAGER)
+	@Builder.Default
+	private List<Venta> listaVentas = new ArrayList<>();
 	
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		String role = "ROLE_";

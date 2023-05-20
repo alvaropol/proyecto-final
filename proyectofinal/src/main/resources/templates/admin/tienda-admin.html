@@ -16,7 +16,7 @@
 <body>
 
 	<header>
-		<form th:action="@{/logout/}" method="POST" id="logoutForm"></form>
+		<form th:action="@{/logout/}" method="POST" id="logoutForm" style="display: none;"></form>
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" th:href="@{/inicio/}">
@@ -202,7 +202,7 @@
 									style="width: 100%; height: auto;">
 							</a>
 							<ul>
-								<li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+								<li><a th:href="@{/productoACarrito/{id}/(id=${producto.id})}"><i class="fas fa-shopping-cart"></i></a></li>
 								<li><a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i
 											class="fas fa-plus"></i></a></li>
 							</ul>

@@ -38,6 +38,7 @@ public class Producto {
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@OneToMany(mappedBy="producto")
+	
 	private List<LineaVenta> lineasVenta = new ArrayList<>();
 	  
 	public Producto(String nombre, double precio, String descripcion, int calificacion, String imagen, Categoria categoria) {

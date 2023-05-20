@@ -23,8 +23,9 @@ public class LineaVenta {
 	private LineaVentaPK lineaventaPK = new LineaVentaPK();
 	
 	private double pvp;
-	private int descuento; //El descuento solo podrá ir de 0 a 100%
+	private int cantidad,descuento; 
 	private double subtotal;
+	
 	
 	@ManyToOne
 	private Producto producto;

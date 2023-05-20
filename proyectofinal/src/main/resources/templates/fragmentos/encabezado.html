@@ -16,7 +16,7 @@
 <body>
 	<header th:fragment="encabezado">
 		
-		<form th:action="@{/logout/}" method="POST" id="logoutForm"></form>
+		<form th:action="@{/logout/}" method="POST" id="logoutForm" style="display: none;"></form>
 	<nav class="navbar navbar-expand-lg navbar-dark" th:fragment="encabezado">
 		<div class="container-fluid">
 			<a class="navbar-brand" th:href="@{/inicio/}">

@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -33,6 +34,22 @@ public class Venta {
 	private Long id;
 	
 	private LocalDate fechaVenta;
+	private double precioTotal;
+	
+	@ManyToOne
+	private Socio socio;
+	
+	//Métodos HELPER. En caso de que queramos añadir/borrar un socio de una venta a la que esté asociada.
+	
+	public void addSocioVenta(Socio s) {
+		this.socio=s;
+		s.getListaVentas().add(this);
+	}
+	
+	public void removeSocioFromVenta(Socio s) {
+		s.getListaVentas().remove(this);
+		this.socio=null;
+	}
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
@@ -46,18 +63,27 @@ public class Venta {
 	private List<LineaVenta> lineasVenta = new ArrayList<>();
 	
 	
-	public List<LineaVenta> getAsientos() {
+	public List<LineaVenta> getLineasVentas() {
 		return Collections.unmodifiableList(lineasVenta);
 	}
 
-	private double precioTotal;
-	
-	
-	
 	// MÉTODOS HELPER
 	public void addLineaVenta(LineaVenta l) {
+		l.getLineaventaPK().setLineaventa_id(generacionId());
 		l.setVenta(this);
 		this.lineasVenta.add(l);
+	}
+	
+	public Long generacionId() {
+		if(this.lineasVenta.size()>0) {
+			return this.lineasVenta.stream()
+					.map(LineaVenta::getLineaventaPK)
+					.map(LineaVentaPK::getLineaventa_id)
+					.max(Comparator.naturalOrder())
+					.orElse(01l)+1l;
+		}else {
+			return 1L;
+		}
 	}
 	
 	public void removeLineaVenta(LineaVenta l) {

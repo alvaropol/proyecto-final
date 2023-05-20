@@ -49,7 +49,7 @@
 									class="img-responsive icono-categoria" alt="Imagen del producto" style="width: 100%; height: auto;">
 							</a>
 							<ul>
-								<li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+								<li><a th:href="@{/productoACarrito/{id}/(id=${producto.id})}"><i class="fas fa-shopping-cart"></i></a></li>
 								<li><a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i class="fas fa-plus"></i></a></li>
 							</ul>
 						</div>
