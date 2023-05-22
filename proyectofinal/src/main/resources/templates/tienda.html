@@ -16,7 +16,75 @@
 <body>
 
 	<header>
-		<nav th:replace="~{fragmentos/encabezado::encabezado}"></nav>
+		
+		<form th:action="@{/logout/}" method="POST" id="logoutForm" style="display: none;"></form>
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(224, 51, 51);">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/inicio/}">
+				<img src="/img/escudo.png" alt="Escudo del Sevilla FC" style="width: 180px;">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+				aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbar" style="margin-top: 17px;">
+				<ul class="nav navbar-nav me-auto">
+					
+					<li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a href="" th:href="@{/login/}" class="nav-link">Login</a>
+                    </li>
+			
+					<li class="nav-item" sec:authorize="isAuthenticated()">	
+						  <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+					</li>
+					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+						<a class="nav-link" th:href="@{/admin/socios/}">Socios ADMIN</a>
+					</li>
+					<li class="nav-item" sec:authorize="!isAuthenticated()">
+						<a class="nav-link" th:href="@{/hazte-socio/}">¡Hazte socio!</a>
+					</li>
+					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+							<a class="nav-link" th:href="@{/admin/productos/}">Tienda ADMIN</a>
+					</li>
+					<li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
+							<a class="nav-link" th:href="@{/productos/}">Tienda</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/calendario/}">Partidos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/noticias/}">Noticias</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+							aria-haspopup="true" aria-expanded="false">Más</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="https://shop.sevillafc.es/pages/aviso-legal">Aviso
+								Legal</a>
+							<a class="dropdown-item" th:href="@{/clasificacion/}">Clasificación</a>
+							<a class="dropdown-item" th:href="@{https://sevillafc.es/el-club/historia}">Historia de
+								nuestro
+								equipo</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/contacto}">Contacta con nosotros</a>
+						</div>
+						
+					</li>
+					
+					<li class="nav-item" style="margin-left: 20px;" sec:authorize="isAuthenticated()">
+						<a class="nav-link"><p style="font-size: 15pt;">Bienvenido <span sec:authentication="name">Usuario</span></p></a>
+					</li>
+					
+					<li class="nav-item" style="margin-left: 20px;">
+							<a class="nav-link btn btn-light" th:href="@{/carrito/}"><i class="bi bi-cart" style="color: black;"></i></a>
+					</li>
+
+					
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
 	</header>
 
 	<main>

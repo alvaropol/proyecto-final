@@ -94,6 +94,10 @@ public class SocioController {
 				model.addAttribute("error", "El nombre de usuario no está disponible, introduzca otro distinto");
 	            return "formularioSocios";
 			}
+			if(s.getDni().equals(socio.getDni())) {
+				model.addAttribute("error", "Lo sentimos ese DNI ya existe");
+	            return "formularioSocios";
+			}
 		}
 		
 		socio.setPassword(passwordEncoder.encode(socio.getPassword()));

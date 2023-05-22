@@ -23,7 +23,7 @@ public class LineaVenta {
 	private LineaVentaPK lineaventaPK = new LineaVentaPK();
 	
 	private double pvp;
-	private int cantidad ,descuento;  //El descuento puede ir de 1 a 50% dependiendo del producto y su valor
+	private int cantidad;
 	private double subtotal;
 	
 	

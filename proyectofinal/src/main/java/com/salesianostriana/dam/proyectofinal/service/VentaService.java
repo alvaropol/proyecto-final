@@ -27,6 +27,9 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 
 	@Autowired
 	ProductRepository repositorioProducto;
+	
+	@Autowired
+	SocioService servicioSocio;
 
 
 	private Map<Producto, Integer> productos = new HashMap<>();
@@ -49,14 +52,24 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 		}
 	}
 
-	public double totalCarrito() {
-
+	public double totalCarrito(Socio s) {
+		
 		Map<Producto, Integer> carrito = getProductsInCart();
 		double total = 0.0;
 		if (carrito != null) {
+	        
 			for (Producto p : carrito.keySet()) {
-
-				total += p.getPrecio() * carrito.get(p);
+				
+				if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=80) { 
+					total += p.getPrecio() * carrito.get(p) - (p.getPrecio() * carrito.get(p) * (10/100)); //Le aplicamos el descuento
+				}else if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=150) {
+					total += p.getPrecio() * carrito.get(p) - (p.getPrecio() * carrito.get(p) * (25/100));
+				}else if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=250) {
+					total += p.getPrecio() * carrito.get(p) - (p.getPrecio() * carrito.get(p) * (50/100));
+				}else {
+					total += p.getPrecio() * carrito.get(p);
+				}
+				
 			}
 			return total;
 		}
@@ -75,20 +88,31 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 	 */
 	public void checkoutCompra(Socio s) {
 		Venta v = new Venta();
+					
 		for (Producto p : productos.keySet()) {
 			v.addLineaVenta(
 					LineaVenta.builder()
 					.producto(p)
 					.cantidad(productos.get(p))
 					// En mi caso, el pvp de los productos, será el valor de dicho producto más un
-					// 10% del valor total.
+					// 10%.
 					.pvp(p.getPrecio() + (1 * 0.10))
 					.subtotal(p.getPrecio() * productos.get(p))
 					.build());
 		}
-		v.setSocio(s);
-		v.setPrecioTotal(totalCarrito());
+		
+		
+		
+		v.setSocio(s);		
+		v.setPrecioTotal(totalCarrito(s));
 		v.setFechaVenta(LocalDate.now());
+		if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=80) {
+			v.setDescuento(10);
+		}else if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=150){
+			v.setDescuento(25);
+		}else if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=250)
+			v.setDescuento(50);
+		
 		save(v);
 		
 		//Vaciamos la lista del carrito para que pueda seguir haciendo más compras.

@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
 import com.salesianostriana.dam.proyectofinal.model.Producto;
 import com.salesianostriana.dam.proyectofinal.model.Socio;
 import com.salesianostriana.dam.proyectofinal.service.ProductoService;
@@ -25,11 +24,14 @@ public class VentaController {
 	@Autowired
 	private ProductoService productoService;
 	
+
+	
 	@GetMapping ("/carrito/")
-    public String showCarrito (Model model) {
+    public String showCarrito (@AuthenticationPrincipal Socio socio, Model model) {
 		if (model.addAttribute("productos",servicioVenta.getProductsInCart()) == null)
     		return "redirect:/";
-		model.addAttribute("total", servicioVenta.totalCarrito());
+
+		model.addAttribute("total", servicioVenta.totalCarrito(socio));
     	return "carrito";
     }
 	
@@ -63,13 +65,15 @@ public class VentaController {
 	    
 	    @GetMapping("/carrito/checkout/")
 	    public String checkoutCarrito(@AuthenticationPrincipal Socio s) {
+	    	
+	    	s.setCantidadCompras(s.getCantidadCompras()+1);
+	    	
+	    	if(s.getCantidadCompras()>5) {
+	    		s.setSocioRojo(true);
+	    	}
 	    	servicioVenta.checkoutCompra(s);
 	    	
-	    	if(s.isAdmin()) {
-	    		return "redirect:/admin/productos/";
-	    	}else {
-	    		return "redirect:/productos/";
-	    	}
+	    	return "successCheckoutCompra";
 	    }
 
 	   
