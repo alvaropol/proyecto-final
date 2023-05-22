@@ -20,10 +20,14 @@ Esta última funcionalidad de añadir productos al carrito y tener una vista gen
 Una vez en la tienda del admin, se agrega en el menú una opción llamada "Opciones de tienda", en la cual podemos ir a la gestión de productos o a la gestión de categorías.
 
 Por otro lado tenemos la sección de gestión de socios, donde el admin puede añadir socios, eliminar socios, editar sus datos, y ver los detalles de cada socio.
-Como usuario en esta sección podemos rellenar un formulario que al rellenarlo, se añadirá un nuevo socio automáticamente a la base de datos, y posteriormente se le actualizará al admin en su panel de socios.
+Además un socio puede comprar en la tienda, y si se gasta una cantidad de dinero, puede obtener beneficios en la misma.
+Como usuario NO LOGUEADO en esta sección podemos rellenar un formulario que al rellenarlo, se añadirá un nuevo socio automáticamente a la base de datos, y posteriormente se le actualizará al admin en su panel de socios. Y podremos usar el nombre de usuario y contraseña registrada para loguearnos como socio. (Si queremos que ese socio nuevo sea admin, tendría que hacerlo otro admin desde el panel de gestión).
 
 Además de estas funcionalidades, cuenta con una página de inicio con historia del club, y varias páginas estáticas como clasificación, noticias, calendario de partidos, y otra de contacto con el club, 
 donde si se envia el formulario correctamente, genera una ID de mensaje en la misma plantilla de contacto (esta id es visualmente).
+
+En resumen, como lógica de negocio, tenemos el carrito, con toda su gestión, descuentos en las siguientes compras si un socio ha superado una cantidad de dinero gastado en la tienda, además de todos los CRUD y las asosiaciones: categoria-producto (OneToMany), 
+lineaventa-venta (ManyToOne, siendo una composición) y venta-socio (ManyToOne).
 
 
 
