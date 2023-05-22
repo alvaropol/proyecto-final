@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" 
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<meta charset="UTF-8">
@@ -20,49 +19,97 @@
 		<nav th:replace="~{fragmentos/encabezado::encabezado}"></nav>
 	</header>
 
-	<div class="container justify-content-center">
-		<div class="row">
-			<div class="col-md-8">
-				<div class="input-group mb-3">
-					<form th:action="@{/productos/search/}" th:object="${searchForm}" method="POST">
-						<input type="text" name="nombre" th:field="*{search}" id="nombre"
-							placeholder="Buscar productos por nombre...." style="padding: 10px; width: 500px;">
+	<main>
 
-						<button class="btn btn-outline-warning lupa btn-lg" type="submit"><i
-								class="bi bi-search text-white"></i></button>
-
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<section class="section-products">
-		<div class="container">
+		<div class="container justify-content-center" style="margin-top: 100px;">
 			<div class="row">
-				<div class="col-4" th:each="producto : ${listaProductos}">
-					<div id="product" class="single-product">
-						<div class="part-1">
-							<a th:href="@{/productos/detalles/{id}/(id=${producto.id})}">
-								<img th:src="${not (#strings.isEmpty(producto.imagen))} 
-								              ? ${producto.imagen} : 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg'"
-									class="img-responsive icono-categoria" alt="Imagen del producto" style="width: 100%; height: auto;">
-							</a>
-							<ul>
-								<li><a th:href="@{/productoACarrito/{id}/(id=${producto.id})}"><i class="fas fa-shopping-cart"></i></a></li>
-								<li><a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i class="fas fa-plus"></i></a></li>
-							</ul>
-						</div>
-						<div class="part-2">
-							<h3 class="product-title" th:text="${producto.nombre}">Nombre producto</h3>
-							<h4 class="product-price" th:text="${producto.precio} + ' €'">XX.XX€</h4>
-						</div>
+				<div class="col-md-8">
+					<div class="input-group mb-3">
+						<form th:action="@{/productos/search/}" th:object="${searchForm}" method="POST">
+							<input type="text" name="nombre" th:field="*{search}" id="nombre"
+								placeholder="Buscar productos por nombre...." style="padding: 10px; width: 500px;">
+
+							<button class="btn btn-outline-warning lupa btn-lg" type="submit"><i
+									class="bi bi-search text-white"></i></button>
+
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	<hr>
+
+		<section class="section-products">
+			<div class="container">
+				<div class="row">
+					<div class="col-4" th:each="producto : ${listaProductos}">
+						<div id="product" class="single-product">
+							<div class="part-1">
+								<a th:href="@{/productos/detalles/{id}/(id=${producto.id})}">
+									<img th:src="${not (#strings.isEmpty(producto.imagen))} 
+								              ? ${producto.imagen} : 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg'"
+										class="img-responsive icono-categoria" alt="Imagen del producto"
+										style="width: 100%; height: auto;">
+								</a>
+								<ul>
+									<li><a data-bs-toggle="modal"
+											th:attr="data-bs-target='#confirmarAdd'+ '-' + ${producto.id}"><i
+												class="fas fa-shopping-cart"></i></a></li>
+
+
+									<div class="modal" th:id="confirmarAdd + '-' + ${producto.id}" tabindex="-1">
+										<div class="modal-dialog modal-lg">
+											<div class="modal-content">
+												<div class="modal-body">
+													<div class="text-right"> <i class="fa fa-close close"
+															data-dismiss="modal"></i> </div>
+													<div class="row">
+														<div class="col-md-6">
+															<div class="text-center mt-2">
+																<a
+																	th:href="@{/productos/detalles/{id}/(id=${producto.id})}">
+																	<img th:src="${not (#strings.isEmpty(producto.imagen))} 
+								              ? ${producto.imagen} : 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg'"
+																		class="img-responsive icono-categoria"
+																		alt="Imagen del producto"
+																		style="width: 100%; height: auto;">
+																</a>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="text-black mt-4">
+																<h4>Añadir producto al carrito</h4>
+																<div class="mt-2">
+																	<span class="intro-2"
+																		th:text="${producto.nombre}"></span>
+																</div>
+																<h5 style="margin-top: 20px	;"
+																	th:text="${producto.precio} + ' €'"></h5>
+																<div class="mt-4 mb-5"> <a class="btn btn-primary"
+																		data-dismiss="modal"
+																		th:href="@{/productoACarrito/{id}/(id=${producto.id})}">Añadir
+																		al carrito<i class="bi bi-bag"
+																			style="margin-left: 5px;"></i></a> </div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<li><a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i
+												class="fas fa-plus"></i></a></li>
+								</ul>
+							</div>
+							<div class="part-2">
+								<h3 class="product-title" th:text="${producto.nombre}">Nombre producto</h3>
+								<h4 class="product-price" th:text="${producto.precio} + ' €'">XX.XX€</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<hr>
 	</main>
 
 	<footer th:replace="~{fragmentos/pie::pie}"></footer>

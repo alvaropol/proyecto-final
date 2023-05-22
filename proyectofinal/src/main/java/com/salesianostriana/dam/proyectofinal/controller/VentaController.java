@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
 import com.salesianostriana.dam.proyectofinal.model.Producto;
 import com.salesianostriana.dam.proyectofinal.model.Socio;
 import com.salesianostriana.dam.proyectofinal.service.ProductoService;
@@ -33,16 +34,19 @@ public class VentaController {
     }
 	
 	 @GetMapping ("/productoACarrito/{id}/")
-	    public String productoACarrito (@PathVariable("id") Long id, Model model) {
+	    public String productoACarrito (@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Socio s) {
 	    	
 		 Optional<Producto> optionalProducto = productoService.findById(id);
 		 Producto producto = optionalProducto.get();
 		 if(optionalProducto.isPresent()) {
 			 servicioVenta.addProducto(producto);
 		 }
-	    	
-	    	    		 	
-	    	return "redirect:/carrito/";
+	    	    	    		 	
+		 if(s.isAdmin()) {
+	    		return "redirect:/admin/productos/";
+	    	}else {
+	    		return "redirect:/productos/";
+	    	}
 	    }
 	 
 	    @GetMapping("/borrarProducto/{id}/")

@@ -49,7 +49,7 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 		}
 	}
 
-	public Double totalCarrito() {
+	public double totalCarrito() {
 
 		Map<Producto, Integer> carrito = getProductsInCart();
 		double total = 0.0;
