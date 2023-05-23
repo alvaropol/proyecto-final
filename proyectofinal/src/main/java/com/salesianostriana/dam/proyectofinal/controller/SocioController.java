@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.proyectofinal.controller;
 
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 import com.salesianostriana.dam.proyectofinal.formbeans.SearchBean;
 import com.salesianostriana.dam.proyectofinal.model.Socio;
@@ -40,7 +42,7 @@ public class SocioController {
 	@GetMapping("/admin/socios/add/")
 	public String showForm(Model model) {
 
-		model.addAttribute("socio", new Socio());
+		model.addAttribute("socio", new Socio(0L));
 		model.addAttribute("listaSocios", servicio.findAll());
 		return "admin/formularioSocios-admin";
 	}
@@ -86,6 +88,9 @@ public class SocioController {
 		return "redirect:/admin/socios/";
 	}
 	
+	
+	
+	
 	@PostMapping("/socios/add/submit/")
 	public String addSocio(@ModelAttribute("socio") Socio socio, Model model) {
 		
@@ -108,12 +113,6 @@ public class SocioController {
 	@PostMapping("/admin/socios/add/submit/")
 	public String addSocioAdmin(@ModelAttribute("socio") Socio socio, Model model) {
 		
-		for(Socio s : servicio.findAll()) {
-			if(s.getUsername().equals(socio.getUsername())) {
-				model.addAttribute("error", "El nombre de usuario no está disponible, introduzca otro distinto");
-	            return "admin/formularioSocios-admin";
-			}
-		}
 		
 		socio.setPassword(passwordEncoder.encode(socio.getPassword()));
 	    servicio.save(socio);
@@ -122,6 +121,7 @@ public class SocioController {
 	
 	@PostMapping("/admin/socios/editar/submit/")
 	public String editarSocioAdmin(@ModelAttribute("socio") Socio socio, Model model) {
+
 		servicio.edit(socio);
 		return "redirect:/admin/socios/";
 	}

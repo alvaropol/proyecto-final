@@ -91,4 +91,8 @@ public class Socio implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+	
+	public Socio(Long id) {
+		this.id=id;
+	}
 }

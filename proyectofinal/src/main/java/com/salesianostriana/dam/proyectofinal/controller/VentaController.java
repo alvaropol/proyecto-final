@@ -78,6 +78,19 @@ public class VentaController {
     	return "carrito";
     }
 	
+	
+	@GetMapping("/admin/ventas/")
+	public String showSociosAdmin(Model model) {
+		model.addAttribute("listaVentas", servicioVenta.findAll());
+		model.addAttribute("ganadoAnyo", servicioVenta.calcularGanadoAlAnyo());
+		model.addAttribute("ganadoMes", servicioVenta.calcularGanadoAlMes());
+		model.addAttribute("contSocios", socioRepositorio.contarSocios());
+		model.addAttribute("cantVentas", servicioVenta.contarCantidadTotalVentas());
+		return "admin/ventas";
+	}
+
+	
+	
 	 @GetMapping ("/productoACarrito/{id}/")
 	    public String productoACarrito (@PathVariable("id") Long id, Model model, @AuthenticationPrincipal Socio s) {
 	    	
@@ -120,6 +133,8 @@ public class VentaController {
 	    	
 	    	return "successCheckoutCompra";
 	    }
+	    
+
 
 	   
 	    
