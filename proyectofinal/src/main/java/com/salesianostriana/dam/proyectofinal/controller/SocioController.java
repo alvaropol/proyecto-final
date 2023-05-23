@@ -114,6 +114,17 @@ public class SocioController {
 	public String addSocioAdmin(@ModelAttribute("socio") Socio socio, Model model) {
 		
 		
+		for(Socio s : servicio.findAll()) {
+			if(s.getUsername().equals(socio.getUsername())) {
+				model.addAttribute("error", "El nombre de usuario no está disponible, introduzca otro distinto");
+	            return "admin/formularioSocios-admin";
+			}
+			if(s.getDni().equals(socio.getDni())) {
+				model.addAttribute("error", "Lo sentimos ese DNI ya existe");
+	            return "admin/formularioSocios-admin";
+			}
+		}
+		
 		socio.setPassword(passwordEncoder.encode(socio.getPassword()));
 	    servicio.save(socio);
 	    return "redirect:/admin/socios/";
