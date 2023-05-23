@@ -31,6 +31,22 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 
 	@Autowired
 	SocioService servicioSocio;
+	
+	
+	public Long contarCantidadTotalVentas() {
+		return repositorioVenta.contarCantidadTotalVentas();
+	}
+	
+	public double calcularGanadoAlAnyo() {
+		return repositorioVenta.calcularGanadoAlAnyo();
+	}
+
+	public double calcularGanadoAlMes() {
+		return repositorioVenta.calcularGanadoAlMes();
+	}
+
+	
+
 
 	private Map<Producto, Integer> productos = new HashMap<>();
 
@@ -81,6 +97,7 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 	 */
 	public void checkoutCompra(Socio s) {
 		Venta v = new Venta();
+		
 		double totalGastado = repositorioVenta.getTotalGastadoPorIdSocio(s);
 
 		for (Producto p : productos.keySet()) {

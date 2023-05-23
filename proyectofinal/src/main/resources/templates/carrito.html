@@ -68,6 +68,10 @@
 								</p>
 							</a>
 						</li>
+						
+						<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+							<a class="nav-link" th:href="@{/admin/ventas/}">Ventas</a>
+						</li>
 		
 						<li class="nav-item" style="margin-left: 20px;">
 							<a class="nav-link btn btn-light" th:href="@{/carrito/}"><i class="bi bi-cart" style="color: black;"></i></a>

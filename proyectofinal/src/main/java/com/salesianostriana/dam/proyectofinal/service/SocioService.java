@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyectofinal.model.Socio;
-
 import com.salesianostriana.dam.proyectofinal.repository.SocioRepository;
+
+
+
 
 @Service
 public class SocioService
@@ -19,4 +21,9 @@ public class SocioService
 	public List<Socio> findByDni(String dni){
 		return repositorio.findByDniContainingIgnoreCase(dni);
 	}
+	
+	public Long contarSocios() {
+		return repositorio.contarSocios();
+	}
+	
 }

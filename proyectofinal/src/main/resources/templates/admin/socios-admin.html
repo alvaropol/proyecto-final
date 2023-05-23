@@ -25,24 +25,21 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="input-group mb-3">
-					<form th:action="@{/admin/socios/search/}" th:object="${searchForm}" method="POST">
+						<form th:action="@{/admin/socios/search/}" th:object="${searchForm}" method="POST">
 						<input type="text" name="dni" th:field="*{search}" id="dni"
 							placeholder="Buscar socios por DNI...." style="padding: 10px; width: 500px; margin-top: 50px;">
 
 						<button class="btn btn-outline-warning lupa btn-lg" type="submit"><i
 								class="bi bi-search text-white"></i></button>
 
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-
-
 	</div>
-	</div>
-
-
-
+	
+	
 	<section class="intro">
 		<div class="bg-image h-100 productable ">
 			<div class="mask d-flex align-items-center h-100" style="background-color: rgb(224, 51, 51);">
