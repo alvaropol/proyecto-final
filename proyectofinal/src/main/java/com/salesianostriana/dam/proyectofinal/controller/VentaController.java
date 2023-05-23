@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.salesianostriana.dam.proyectofinal.model.Producto;
 import com.salesianostriana.dam.proyectofinal.model.Socio;
+import com.salesianostriana.dam.proyectofinal.repository.SocioRepository;
 import com.salesianostriana.dam.proyectofinal.service.ProductoService;
 import com.salesianostriana.dam.proyectofinal.service.VentaService;
 
@@ -23,6 +24,9 @@ public class VentaController {
 	
 	@Autowired
 	private ProductoService productoService;
+	
+	@Autowired
+	private SocioRepository socioRepositorio;
 	
 
 	
@@ -67,10 +71,12 @@ public class VentaController {
 	    public String checkoutCarrito(@AuthenticationPrincipal Socio s) {
 	    	
 	    	s.setCantidadCompras(s.getCantidadCompras()+1);
-	    	
+	    		
 	    	if(s.getCantidadCompras()>5) {
 	    		s.setSocioRojo(true);
 	    	}
+	    	
+	    	socioRepositorio.save(s);
 	    	servicioVenta.checkoutCompra(s);
 	    	
 	    	return "successCheckoutCompra";

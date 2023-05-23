@@ -27,10 +27,9 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 
 	@Autowired
 	ProductRepository repositorioProducto;
-	
+
 	@Autowired
 	SocioService servicioSocio;
-
 
 	private Map<Producto, Integer> productos = new HashMap<>();
 
@@ -52,24 +51,20 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 		}
 	}
 
+	public Map<Producto, Integer> getProductsInCart() {
+		return Collections.unmodifiableMap(productos);
+	}
+
 	public double totalCarrito(Socio s) {
-		
+
 		Map<Producto, Integer> carrito = getProductsInCart();
 		double total = 0.0;
 		if (carrito != null) {
-	        
+
 			for (Producto p : carrito.keySet()) {
-				
-				if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=80) { 
-					total += p.getPrecio() * carrito.get(p) - (p.getPrecio() * carrito.get(p) * (10/100)); //Le aplicamos el descuento
-				}else if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=150) {
-					total += p.getPrecio() * carrito.get(p) - (p.getPrecio() * carrito.get(p) * (25/100));
-				}else if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=250) {
-					total += p.getPrecio() * carrito.get(p) - (p.getPrecio() * carrito.get(p) * (50/100));
-				}else {
-					total += p.getPrecio() * carrito.get(p);
-				}
-				
+
+				total += p.getPrecio() * carrito.get(p);
+
 			}
 			return total;
 		}
@@ -77,21 +72,18 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 		return 0.0;
 	}
 
-	public Map<Producto, Integer> getProductsInCart() {
-		return Collections.unmodifiableMap(productos);
-	}
-
 	/**
-	 * Este método atiende al checkout del carrito, donde al darle al botón comprar en la página web, trabajará con la venta y el socio
+	 * Este método atiende al checkout del carrito, donde al darle al botón comprar
+	 * en la página web, trabajará con la venta y el socio
 	 * 
 	 * @param s Socio que está asociado a la compra (model Venta)
 	 */
 	public void checkoutCompra(Socio s) {
 		Venta v = new Venta();
-					
+		double totalGastado = repositorioVenta.getTotalGastadoPorIdSocio(s);
+
 		for (Producto p : productos.keySet()) {
-			v.addLineaVenta(
-					LineaVenta.builder()
+			v.addLineaVenta(LineaVenta.builder()
 					.producto(p)
 					.cantidad(productos.get(p))
 					// En mi caso, el pvp de los productos, será el valor de dicho producto más un
@@ -100,22 +92,28 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 					.subtotal(p.getPrecio() * productos.get(p))
 					.build());
 		}
-		
-		
-		
-		v.setSocio(s);		
-		v.setPrecioTotal(totalCarrito(s));
+
+		v.setSocio(s);
 		v.setFechaVenta(LocalDate.now());
-		if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=80) {
+		if (totalGastado >= 80 && totalGastado < 150) {
 			v.setDescuento(10);
-		}else if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=150){
+			double precio = (totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100)));
+			v.setPrecioTotal(precio);
+		} else if (totalGastado >= 150 && totalGastado < 250) {
 			v.setDescuento(25);
-		}else if(repositorioVenta.getTotalGastadoPorIdSocio(s.getId())>=250)
+			double precio = (totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100)));
+			v.setPrecioTotal(precio);
+		} else if (totalGastado >= 250) {
 			v.setDescuento(50);
+			double precio = (totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100)));
+			v.setPrecioTotal(precio);
+		}else {
+			v.setPrecioTotal(totalCarrito(s));
+		}
 		
 		save(v);
-		
-		//Vaciamos la lista del carrito para que pueda seguir haciendo más compras.
+
+		// Vaciamos la lista del carrito para que pueda seguir haciendo más compras.
 		productos.clear();
 	}
 
