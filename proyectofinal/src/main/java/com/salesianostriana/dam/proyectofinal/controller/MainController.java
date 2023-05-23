@@ -43,4 +43,9 @@ public class MainController {
 		return "calendario";
 	}
 	
+	@GetMapping("/error")
+	public String showError() {
+		return "error";
+	}
+	
 }

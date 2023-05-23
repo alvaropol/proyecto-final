@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -63,7 +64,6 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 
 			for (Producto p : carrito.keySet()) {
 
-				//Le sumo un 10% del total de cada linea de venta de pvp
 				total += p.getPrecio() * carrito.get(p);
 
 			}
@@ -87,8 +87,6 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 			v.addLineaVenta(LineaVenta.builder()
 					.producto(p)
 					.cantidad(productos.get(p))
-					// En mi caso, el pvp de los productos, será el valor de dicho producto más un
-					// 10%.
 					.pvp(p.getPrecio())
 					.subtotal(p.getPrecio() * productos.get(p))
 					.build());
@@ -96,22 +94,24 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 
 		v.setSocio(s);
 		v.setFechaVenta(LocalDate.now());
-		if (totalGastado >= 80 && totalGastado < 150) {
-		    v.setDescuento(10);
-		    double precio = totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100));
-		    v.setPrecioTotal(precio);
+		if (totalGastado >= 80 && totalGastado < 150) { 
+			//Si el socio lleva gastado entre 80 y 150 euros, se le aplica un descuento del 10% en las siguientes compras, 
+			//lo mismo pasa si superas los 150 y 250 euros, solo que con mayor % de descuento
+			v.setDescuento(10);
+			double precio = totalCarrito(s) - (totalCarrito(s) * (v.getDescuento() / 100));
+			v.setPrecioTotal(precio);
 		} else if (totalGastado >= 150 && totalGastado < 250) {
-		    v.setDescuento(25);
-		    double precio = totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100));
-		    v.setPrecioTotal(precio);
+			v.setDescuento(15);
+			double precio = totalCarrito(s) - (totalCarrito(s) * (v.getDescuento() / 100));
+			v.setPrecioTotal(precio);
 		} else if (totalGastado >= 250) {
-		    v.setDescuento(50);
-		    double precio = totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100));
-		    v.setPrecioTotal(precio);
+			v.setDescuento(25);
+			double precio = totalCarrito(s) - (totalCarrito(s) * (v.getDescuento() / 100));
+			v.setPrecioTotal(precio);
 		} else {
-		    v.setPrecioTotal(totalCarrito(s));
+			v.setPrecioTotal(totalCarrito(s));
 		}
-		
+
 		save(v);
 
 		// Vaciamos la lista del carrito para que pueda seguir haciendo más compras.

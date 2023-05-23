@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.proyectofinal.controller;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.salesianostriana.dam.proyectofinal.model.Producto;
 import com.salesianostriana.dam.proyectofinal.model.Socio;
 import com.salesianostriana.dam.proyectofinal.repository.SocioRepository;
+import com.salesianostriana.dam.proyectofinal.repository.VentaRepository;
 import com.salesianostriana.dam.proyectofinal.service.ProductoService;
 import com.salesianostriana.dam.proyectofinal.service.VentaService;
 
@@ -28,14 +30,51 @@ public class VentaController {
 	@Autowired
 	private SocioRepository socioRepositorio;
 	
-
+	@Autowired
+	private VentaRepository ventaRepositorio;
 
 	
 	@GetMapping ("/carrito/")
     public String showCarrito (@AuthenticationPrincipal Socio socio, Model model) {
-		if (model.addAttribute("productos",servicioVenta.getProductsInCart()) == null)
-    		return "redirect:/";
+		Map<Producto,Integer> productos = servicioVenta.getProductsInCart();
+		
+		 if (productos == null || productos.isEmpty()) {
+			//Si el carrito no tiene productos te redirige a la tienda (de admin o de usuario) hasta que se añade algún producto.
+		        if(socio.isAdmin()){
+		        	return "redirect:/admin/productos/";
+		        }else {
+		        	return "redirect:/productos/";
+		        }
+		    }
+		 
+		 double totalGastado = ventaRepositorio.getTotalGastadoPorIdSocio(socio);
+		 
+		 if (totalGastado >= 80 && totalGastado < 150) { 
+			 
+			 	double precio;
+			 	double descuento = 10;
+				precio =  servicioVenta.totalCarrito(socio) - (servicioVenta.totalCarrito(socio) * (descuento / 100));
+				model.addAttribute("totalDesc", precio);
+			} else if (totalGastado >= 150 && totalGastado < 250) {
+			
+				double precio;
+			 	double descuento = 15;
+				precio =  servicioVenta.totalCarrito(socio) - (servicioVenta.totalCarrito(socio) * (descuento / 100));
+				model.addAttribute("totalDesc", precio);
+				
+			} else if (totalGastado >= 250) {
+				
+				double precio;
+			 	double descuento = 25;
+				precio =  servicioVenta.totalCarrito(socio) - (servicioVenta.totalCarrito(socio) * (descuento / 100));
+				model.addAttribute("totalDesc", precio);
+			}else {
+				model.addAttribute("totalDesc", servicioVenta.totalCarrito(socio));
+			}
+    	
+		model.addAttribute("productos", servicioVenta.getProductsInCart());
 		model.addAttribute("total", servicioVenta.totalCarrito(socio));
+		
     	return "carrito";
     }
 	

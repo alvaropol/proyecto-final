@@ -106,14 +106,12 @@
 												style="color:black; font-family: Arial;"
 												th:text="${element.key.categoria.nombre}">Nombre categoria</span>
 									</div>
-									<div class="col-lg-3 col-xl-3">
+									<div class="col-lg-2 col-xl-2">
 										<p class="lead fw-normal mb-2" style="color: black;">Cantidad</p>
-										<input class="form-control" id="inputQuantity" th:value="${element.value}"
-											type="text" />
-
+										<input class="form-control" id="inputQuantity" style="width: 60%;" th:value="${element.value}" readonly type="text"/>
 									</div>
 
-									<div class=" col-lg-3 col-xl-3">
+									<div class=" col-lg-2 col-xl-2">
 										<p class="lead fw-normal mb-2" style="color: black;">Precio</p>
 										<p><span class="text-muted" style="font-family: Arial;"
 												th:text="${element.key.precio} + '€'">precio</span>
@@ -122,10 +120,24 @@
 												th:text="${element.key.precio * element.value} + '€'">subt</span></p>
 									</div>
 
-									<div class="col-md-1 col-lg-1 col-xl-1 text-end">
-										<a th:href="@{/borrarProducto/{id}/(id=${element.key.id})}"
-											class="text-danger"><i class="fas fa-trash"></i></a>
+									<div class="col-md-1 col-lg-1 col-xl-1 text-end" style="text-align: center;">
+										<a href="#" data-bs-toggle="modal"
+															th:attr="data-bs-target='#borrarProducto'+ '-' + ${element.key.id}"><i
+																class="bi bi-trash fs-2"></i></a>
 									</div>
+									<div class="modal text-white" th:id="borrarProducto + '-' + ${element.key.id}">
+								<div class="modal-dialog remove">
+							<div class="modal-content">
+								<div class="modal-header bg-danger border-0">
+									<h4 class="modal-title mx-auto">¿Estas seguro de borrar ese producto?</h4>
+									<button type="button" class="btn-close mx-0" data-bs-dismiss="modal"></button>
+								</div>
+								<div class="modal-body bg-danger">
+									<a class="btn bg-white text-dark mx-auto w-100" th:href="@{/borrarProducto/{id}/(id=${element.key.id})}">Borrar</a>
+								</div>
+							</div>
+						</div>
+					</div>
 								</div>
 							</div>
 						</div>
@@ -135,7 +147,8 @@
 					<div class="card">
 						<div class="card-body" style="text-align: right;">
 							<p class="mb-0 me-5 d-flex align-items-center">
-								<p style="color: black; text-align: right; font-size: 15pt;">Precio total: <span th:text="${total} + '€'"></span></p>
+								<p style="color: black; text-align: right; font-size: 15pt;">Precio total: <span th:text="${#numbers.formatDecimal(total, 1, 2)} + '€'"></span></p>
+								<p style="color: black; text-align: right; font-size: 15pt;">Precio CON descuento: <span th:text="${#numbers.formatDecimal(totalDesc, 1, 2)} + '€'"></span></p>
 						</div>
 
 					</div>
@@ -153,10 +166,10 @@
 					</div>
 					
 				
-
 				</div>
 			</div>
-			</div>
+		</div>
+		
 		</section>
 
 
