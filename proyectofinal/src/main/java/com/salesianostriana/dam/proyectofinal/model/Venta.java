@@ -35,8 +35,7 @@ public class Venta {
 	
 	private LocalDate fechaVenta;
 	private double precioTotal;
-	@Builder.Default
-	private int descuento=0; //El descuento puede ir de 10% al 50% (Sin valores decimales).
+	private int descuento; //El descuento puede ir de 10% al 50% (Sin valores decimales).
 	
 	@ManyToOne
 	private Socio socio;

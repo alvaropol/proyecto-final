@@ -63,6 +63,7 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 
 			for (Producto p : carrito.keySet()) {
 
+				//Le sumo un 10% del total de cada linea de venta de pvp
 				total += p.getPrecio() * carrito.get(p);
 
 			}
@@ -88,7 +89,7 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 					.cantidad(productos.get(p))
 					// En mi caso, el pvp de los productos, será el valor de dicho producto más un
 					// 10%.
-					.pvp(p.getPrecio() + (1 * 0.10))
+					.pvp(p.getPrecio())
 					.subtotal(p.getPrecio() * productos.get(p))
 					.build());
 		}
@@ -96,19 +97,19 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 		v.setSocio(s);
 		v.setFechaVenta(LocalDate.now());
 		if (totalGastado >= 80 && totalGastado < 150) {
-			v.setDescuento(10);
-			double precio = (totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100)));
-			v.setPrecioTotal(precio);
+		    v.setDescuento(10);
+		    double precio = totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100));
+		    v.setPrecioTotal(precio);
 		} else if (totalGastado >= 150 && totalGastado < 250) {
-			v.setDescuento(25);
-			double precio = (totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100)));
-			v.setPrecioTotal(precio);
+		    v.setDescuento(25);
+		    double precio = totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100));
+		    v.setPrecioTotal(precio);
 		} else if (totalGastado >= 250) {
-			v.setDescuento(50);
-			double precio = (totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100)));
-			v.setPrecioTotal(precio);
-		}else {
-			v.setPrecioTotal(totalCarrito(s));
+		    v.setDescuento(50);
+		    double precio = totalCarrito(s) - (totalCarrito(s) * (v.getDescuento()/100));
+		    v.setPrecioTotal(precio);
+		} else {
+		    v.setPrecioTotal(totalCarrito(s));
 		}
 		
 		save(v);

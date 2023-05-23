@@ -29,12 +29,12 @@ public class VentaController {
 	private SocioRepository socioRepositorio;
 	
 
+
 	
 	@GetMapping ("/carrito/")
     public String showCarrito (@AuthenticationPrincipal Socio socio, Model model) {
 		if (model.addAttribute("productos",servicioVenta.getProductsInCart()) == null)
     		return "redirect:/";
-
 		model.addAttribute("total", servicioVenta.totalCarrito(socio));
     	return "carrito";
     }
