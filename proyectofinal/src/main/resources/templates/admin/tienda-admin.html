@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tienda</title>
+	<title>Tienda-Admin</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
@@ -17,7 +17,7 @@
 
 	<header>
 		<form th:action="@{/logout/}" method="POST" id="logoutForm" style="display: none;"></form>
-		<nav class="navbar navbar-expand-lg navbar-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgb(224, 51, 51);">
 			<div class="container-fluid">
 				<a class="navbar-brand" th:href="@{/inicio/}">
 					<img src="/img/escudo.png" alt="Escudo del Sevilla FC" style="width: 192px;">
@@ -41,12 +41,6 @@
 						</li>
 						<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
 							<a class="nav-link" th:href="@{/admin/productos/}">Tienda ADMIN</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/calendario/}">Partidos</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/noticias/}">Noticias</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -78,6 +72,10 @@
 								<a class="dropdown-item" th:href="@{/admin/categorias/}">Gestión de categorías</a>
 							</div>
 						</li>
+						
+						<li class="nav-item" style="margin-left: 20px;">
+							<a class="nav-link btn btn-light" th:href="@{/carrito/}"><i class="bi bi-cart" style="color: black;"></i></a>
+						</li>
 
 
 					</ul>
@@ -86,94 +84,99 @@
 		</nav>
 	</header>
 
-	<div class="container justify-content-center">
-		<div class="row">
-			<div class="col-md-8">
-				<div class="input-group mb-3">
-					<form th:action="@{/admin/productos/search/}" th:object="${searchForm}" method="POST">
-						<input type="text" name="nombre" th:field="*{search}" id="nombre"
-							placeholder="Buscar productos por nombre...." style="padding: 10px; width: 500px;">
+	<main>
+		<div class="container justify-content-center">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="input-group mb-3">
+						<form th:action="@{/admin/productos/search/}" th:object="${searchForm}" method="POST">
+							<input type="text" name="nombre" th:field="*{search}" id="nombre"
+								placeholder="Buscar productos por nombre...."
+								style="padding: 10px; width: 500px; margin-top: 40px;">
 
-						<button class="btn btn-outline-warning lupa btn-lg" type="submit"><i
-								class="bi bi-search text-white"></i></button>
+							<button class="btn btn-outline-warning lupa btn-lg" type="submit"><i
+									class="bi bi-search text-white"></i></button>
 
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 
-	</div>
-	</div>
+		</div>
+		</div>
 
 
 
-	<section class="intro">
-		<div class="bg-image h-100 productable ">
-			<div class="mask d-flex align-items-center h-100" style="background-color: rgb(224, 51, 51);">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-12">
-							<div class="card bg-white shadow-2-strong">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table table-red table-borderless mb-0 text-dark">
-											<thead>
-												<tr>
-													<th scope="col">Id</th>
-													<th scope="col">Producto</th>
-													<th scope="col">Categoría</th>
-													<th scope="col">Precio</th>
-													<th scope="col">Calificación</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr th:each="producto : ${listaProductos}">
-													<td th:text="${producto.id}"></td>
-													<td th:text="${producto.nombre}"></td>
-													<td th:text="${producto.categoria.nombre}"></td>
-													<td th:text="${producto.precio} + ' €'"></td>
-													<td th:text="${producto.calificacion}"></td>
+		<section class="intro">
+			<div class="bg-image h-100 productable ">
+				<div class="mask d-flex align-items-center h-100" style="background-color: rgb(224, 51, 51);">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<div class="card bg-white shadow-2-strong">
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table table-red table-borderless mb-0 text-dark">
+												<thead>
+													<tr>
+														<th scope="col">Id</th>
+														<th scope="col">Producto</th>
+														<th scope="col">Categoría</th>
+														<th scope="col">Precio</th>
+														<th scope="col">Calificación</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="producto : ${listaProductos}">
+														<td th:text="${producto.id}"></td>
+														<td th:text="${producto.nombre}"></td>
+														<td th:text="${producto.categoria.nombre}"></td>
+														<td th:text="${producto.precio} + ' €'"></td>
+														<td th:text="${producto.calificacion}"></td>
 
-													<td style="vertical-align: middle;">
-														<a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i
-																class="bi bi-info-circle-fill fs-5"></i></a>
-													</td>
-													<td style="vertical-align: middle;">
-														<a
-															th:href="@{/admin/productos/editar/{id}/(id=${producto.id})}"><i
-																class="bi bi-pencil-square fs-5"></i></a>
-													</td>
-													<td style="vertical-align: middle;">
-														<a href="#" data-bs-toggle="modal"
-															th:attr="data-bs-target='#borrarProducto'+ '-' + ${producto.id}"><i
-																class="bi bi-trash fs-5"></i></a>
-													</td>
+														<td style="vertical-align: middle;">
+															<a
+																th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i
+																	class="bi bi-info-circle-fill fs-5"></i></a>
+														</td>
+														<td style="vertical-align: middle;">
+															<a
+																th:href="@{/admin/productos/editar/{id}/(id=${producto.id})}"><i
+																	class="bi bi-pencil-square fs-5"></i></a>
+														</td>
+														<td style="vertical-align: middle;">
+															<a href="#" data-bs-toggle="modal"
+																th:attr="data-bs-target='#borrarProducto'+ '-' + ${producto.id}"><i
+																	class="bi bi-trash fs-5"></i></a>
+														</td>
 
-													<div class="modal text-white"
-														th:id="borrarProducto + '-' + ${producto.id}">
-														<div class="modal-dialog remove">
-															<div class="modal-content">
+														<div class="modal text-white"
+															th:id="borrarProducto + '-' + ${producto.id}">
+															<div class="modal-dialog remove">
+																<div class="modal-content">
 
-																<div class="modal-header bg-danger border-0">
-																	<h4 class="modal-title mx-auto">¿Estas seguro?</h4>
-																	<button type="button" class="btn-close mx-0"
-																		data-bs-dismiss="modal"></button>
+																	<div class="modal-header bg-danger border-0">
+																		<h4 class="modal-title mx-auto">¿Estas seguro?
+																		</h4>
+																		<button type="button" class="btn-close mx-0"
+																			data-bs-dismiss="modal"></button>
+																	</div>
+
+
+																	<div class="modal-body bg-danger">
+																		<a class="btn bg-white text-dark mx-auto w-100"
+																			th:href="@{/admin/productos/borrar/{id}/(id=${producto.id})}">Borrar</a>
+																	</div>
+
 																</div>
-
-
-																<div class="modal-body bg-danger">
-																	<a class="btn bg-white text-dark mx-auto w-100"
-																		th:href="@{/admin/productos/borrar/{id}/(id=${producto.id})}">Borrar</a>
-																</div>
-
 															</div>
 														</div>
-													</div>
-												</tr>
-											</tbody>
-										</table>
+													</tr>
+												</tbody>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -181,42 +184,87 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
 
-	<a th:href="@{/admin/productos/add/}" class="btn bg-white text-dark"
-		style="padding-top:10px; margin-left: 45%; margin-top: 20px;">Añadir producto</a>
+		<a th:href="@{/admin/productos/add/}" class="btn bg-white text-dark"
+			style="padding-top:10px; margin-left: 45%; margin-top: 20px;">Añadir producto</a>
 
 
-	<section class="section-products">
-		<div class="container">
-			<div class="row">
-				<div class="col-4" th:each="producto : ${listaProductos}">
-					<div id="product" class="single-product">
-						<div class="part-1">
-							<a th:href="@{/productos/detalles/{id}/(id=${producto.id})}">
-								<img th:src="${not (#strings.isEmpty(producto.imagen))} 
+		<section class="section-products">
+			<div class="container">
+				<div class="row">
+					<div class="col-4" th:each="producto : ${listaProductos}">
+						<div id="product" class="single-product">
+							<div class="part-1">
+								<a th:href="@{/productos/detalles/{id}/(id=${producto.id})}">
+									<img th:src="${not (#strings.isEmpty(producto.imagen))} 
 								              ? ${producto.imagen} : 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg'"
-									class="img-responsive icono-categoria" alt="Imagen del producto"
-									style="width: 100%; height: auto;">
-							</a>
-							<ul>
-								<li><a th:href="@{/productoACarrito/{id}/(id=${producto.id})}"><i class="fas fa-shopping-cart"></i></a></li>
-								<li><a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i
-											class="fas fa-plus"></i></a></li>
-							</ul>
-						</div>
-						<div class="part-2">
-							<h3 class="product-title" th:text="${producto.nombre}">Nombre producto</h3>
-							<h4 class="product-price" th:text="${producto.precio} + ' €'">XX.XX€</h4>
+										class="img-responsive icono-categoria" alt="Imagen del producto"
+										style="width: 100%; height: auto;">
+								</a>
+								<ul>
+									<li><a data-bs-toggle="modal"
+											th:attr="data-bs-target='#confirmarAdd'+ '-' + ${producto.id}"><i
+												class="fas fa-shopping-cart"></i></a></li>
+
+
+									<div class="modal" th:id="confirmarAdd + '-' + ${producto.id}" tabindex="-1">
+										<div class="modal-dialog modal-lg">
+											<div class="modal-content">
+												<div class="modal-body">
+													<div class="text-right"> <i class="fa fa-close close"
+															data-dismiss="modal"></i> </div>
+													<div class="row">
+														<div class="col-md-6">
+															<div class="text-center mt-2">
+																<a
+																	th:href="@{/productos/detalles/{id}/(id=${producto.id})}">
+																	<img th:src="${not (#strings.isEmpty(producto.imagen))} 
+								              ? ${producto.imagen} : 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg'"
+																		class="img-responsive icono-categoria"
+																		alt="Imagen del producto"
+																		style="width: 100%; height: auto;">
+																</a>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="text-black mt-4">
+																<h4>Añadir producto al carrito</h4>
+																<div class="mt-2">
+																	<span class="intro-2"
+																		th:text="${producto.nombre}"></span>
+																</div>
+																<h5 style="margin-top: 20px	;"
+																	th:text="${producto.precio} + ' €'"></h5>
+																<div class="mt-4 mb-5"> <a class="btn btn-primary"
+																		data-dismiss="modal" th:href="@{/productoACarrito/{id}/(id=${producto.id})}">Añadir al carrito<i class="bi bi-bag"
+																			style="margin-left: 5px;"></i></a> </div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<li><a th:href="@{/productos/detalles/{id}/(id=${producto.id})}"><i
+												class="fas fa-plus"></i></a></li>
+								</ul>
+							</div>
+							<div class="part-2">
+								<h3 class="product-title" th:text="${producto.nombre}">Nombre producto</h3>
+								<h4 class="product-price" th:text="${producto.precio} + ' €'">XX.XX€</h4>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<hr>
+		</section>
+
+
+
+		<hr>
 	</main>
 
 	<footer th:replace="~{fragmentos/pie::pie}"></footer>

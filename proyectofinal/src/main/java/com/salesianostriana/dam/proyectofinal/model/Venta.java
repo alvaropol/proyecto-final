@@ -35,6 +35,7 @@ public class Venta {
 	
 	private LocalDate fechaVenta;
 	private double precioTotal;
+	private double descuento; //El descuento toma un valor u otro dependiendo del dinero que se haya gastado el socio en la tienda.
 	
 	@ManyToOne
 	private Socio socio;

@@ -23,7 +23,7 @@ public class LineaVenta {
 	private LineaVentaPK lineaventaPK = new LineaVentaPK();
 	
 	private double pvp;
-	private int cantidad,descuento; 
+	private int cantidad;
 	private double subtotal;
 	
 	
