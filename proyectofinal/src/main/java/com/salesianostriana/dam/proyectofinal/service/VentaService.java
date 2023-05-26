@@ -49,6 +49,10 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 	public int contarSociosEnVentas(Socio s) {
 		return this.repository.contarSociosEnVentas(s);
 	}
+	
+	 public int contarVentasPorSocio(Socio s) {
+		 return this.repository.contarVentasPorSocio(s);	 
+	}
 
 	private Map<Producto, Integer> productos = new HashMap<>();
 

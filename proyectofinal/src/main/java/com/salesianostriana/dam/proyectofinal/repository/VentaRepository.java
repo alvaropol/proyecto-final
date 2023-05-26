@@ -18,6 +18,9 @@ public interface VentaRepository
    @Query("select CASE WHEN sum(v.precioTotal) IS NULL THEN 0 ELSE SUM(v.precioTotal) END from Venta v WHERE v.socio = ?1")
    public Double getTotalGastadoPorIdSocio(Socio socio);
    
+   @Query("select CASE WHEN COUNT(v) IS NULL THEN 0 ELSE COUNT(v) END from Venta v WHERE v.socio = ?1")
+   public int contarVentasPorSocio(Socio socio);
+   
    @Query("SELECT CASE WHEN sum(v.precioTotal) IS NULL THEN 0 ELSE SUM(v.precioTotal) END FROM Venta v WHERE YEAR(v.fechaVenta) = YEAR(CURRENT_DATE())")
 	public Double calcularGanadoAlAnyo();
   

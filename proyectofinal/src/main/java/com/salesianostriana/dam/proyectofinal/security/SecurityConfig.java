@@ -45,7 +45,7 @@ public class SecurityConfig {
 		.authorizeRequests()
 			.antMatchers("/css/**","/js/**","/webjars/**","/img/**","/fonts/**","/h2-console/**").permitAll()
 			.antMatchers("/admin/**").hasRole("ADMIN")
-			.antMatchers("/productos/**","/carrito/**","/productoACarrito/**","/borrarProducto/**").authenticated()
+			.antMatchers("/productos/**","/carrito/**","/productoACarrito/**","/borrarProducto/**","/compras/**").authenticated()
 			.anyRequest().permitAll()
 			.and()
 		.formLogin() 
