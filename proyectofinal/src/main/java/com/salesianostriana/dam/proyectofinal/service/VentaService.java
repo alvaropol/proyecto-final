@@ -24,9 +24,6 @@ import com.salesianostriana.dam.proyectofinal.repository.VentaRepository;
 public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> {
 
 	@Autowired
-	VentaRepository repositorioVenta;
-
-	@Autowired
 	ProductRepository repositorioProducto;
 
 	@Autowired
@@ -34,19 +31,24 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 	
 	
 	public Long contarCantidadTotalVentas() {
-		return repositorioVenta.contarCantidadTotalVentas();
+		return this.repository.contarCantidadTotalVentas();
 	}
 	
 	public double calcularGanadoAlAnyo() {
-		return repositorioVenta.calcularGanadoAlAnyo();
+		return this.repository.calcularGanadoAlAnyo();
 	}
 
 	public double calcularGanadoAlMes() {
-		return repositorioVenta.calcularGanadoAlMes();
+		return this.repository.calcularGanadoAlMes();
 	}
-
 	
-
+	public int contarProductosEnLineasVentas(Producto p) {
+		return this.repository.contarProductosEnLineasVentas(p);
+	}
+	
+	public int contarSociosEnVentas(Socio s) {
+		return this.repository.contarSociosEnVentas(s);
+	}
 
 	private Map<Producto, Integer> productos = new HashMap<>();
 
@@ -98,7 +100,7 @@ public class VentaService extends BaseServiceImpl<Venta, Long, VentaRepository> 
 	public void checkoutCompra(Socio s) {
 		Venta v = new Venta();
 		
-		double totalGastado = repositorioVenta.getTotalGastadoPorIdSocio(s);
+		double totalGastado = this.repository.getTotalGastadoPorIdSocio(s);
 
 		for (Producto p : productos.keySet()) {
 			v.addLineaVenta(LineaVenta.builder()

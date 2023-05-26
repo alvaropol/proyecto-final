@@ -14,6 +14,7 @@ import com.salesianostriana.dam.proyectofinal.formbeans.SearchBean;
 import com.salesianostriana.dam.proyectofinal.model.Producto;
 import com.salesianostriana.dam.proyectofinal.service.CategoriaService;
 import com.salesianostriana.dam.proyectofinal.service.ProductoService;
+import com.salesianostriana.dam.proyectofinal.service.VentaService;
 
 @Controller
 public class ProductoController {
@@ -23,6 +24,9 @@ public class ProductoController {
 
 	@Autowired
 	private CategoriaService servicioCategoria;
+	
+	@Autowired
+	private VentaService servicioVenta;
 
 	@GetMapping("/productos/")
 	public String showTienda(Model model) {
@@ -92,10 +96,15 @@ public class ProductoController {
 	public String borrarProducto(@PathVariable("id") Long id, Model model) {
 
 		Optional<Producto> pBorrar = servicioProducto.findById(id);
-
+		Producto producto = pBorrar.get();
+		
 		if (pBorrar.isPresent()) {
-			Producto producto = pBorrar.get();
-			servicioProducto.delete(producto);
+			if(servicioVenta.contarProductosEnLineasVentas(producto) == 0) {
+				servicioProducto.delete(producto);
+			}else {
+				return "redirect:/admin/productos/?error=true";
+			}
+			
 		}
 
 		return "redirect:/admin/productos/";

@@ -20,7 +20,6 @@ import com.salesianostriana.dam.proyectofinal.service.VentaService;
 @Controller
 public class VentaController {
 
-	
 	@Autowired
 	private VentaService servicioVenta;
 	
@@ -112,6 +111,7 @@ public class VentaController {
 	        
 	    	Optional<Producto> optionalProducto = productoService.findById(id);
 			 Producto producto = optionalProducto.get();
+			 
 			 if(optionalProducto.isPresent()) {
 				 servicioVenta.removeProducto(producto);
 			 }

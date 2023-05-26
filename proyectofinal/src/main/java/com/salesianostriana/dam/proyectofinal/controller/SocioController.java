@@ -1,7 +1,5 @@
 package com.salesianostriana.dam.proyectofinal.controller;
 
-
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
 import com.salesianostriana.dam.proyectofinal.formbeans.SearchBean;
 import com.salesianostriana.dam.proyectofinal.model.Socio;
 import com.salesianostriana.dam.proyectofinal.service.SocioService;
+import com.salesianostriana.dam.proyectofinal.service.VentaService;
 
 @Controller
 public class SocioController {
@@ -25,10 +23,12 @@ public class SocioController {
 	private SocioService servicio;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private VentaService servicioVenta;
 
 	@GetMapping("/hazte-socio/")
 	public String showFormSocios(Model model) {
-		model.addAttribute("socio",new Socio());
+		model.addAttribute("socio", new Socio());
 		return "formularioSocios";
 	}
 
@@ -52,25 +52,25 @@ public class SocioController {
 		model.addAttribute("listaSocios", servicio.findAll());
 		Optional<Socio> optionalSocio = servicio.findById(id);
 		Socio socio = optionalSocio.get();
-		
-		if(optionalSocio.isPresent()) {
-			model.addAttribute("socio",socio);
+
+		if (optionalSocio.isPresent()) {
+			model.addAttribute("socio", socio);
 			return "admin/formularioSocios-admin";
-		}else {
+		} else {
 			return "redirect:/admin/socios/";
 		}
-		
+
 	}
 
 	@GetMapping("/admin/socios/detalles/{id}/")
 	public String showSocioDetails(@PathVariable("id") long id, Model model) {
 		Optional<Socio> optionalSocio = servicio.findById(id);
 		Socio socio = optionalSocio.get();
-		
-		if(optionalSocio.isPresent()) {
-			model.addAttribute("socio",socio);
+
+		if (optionalSocio.isPresent()) {
+			model.addAttribute("socio", socio);
 			return "admin/detallesSocio-admin";
-		}else {
+		} else {
 			return "redirect:/admin/socios/";
 		}
 	}
@@ -79,64 +79,63 @@ public class SocioController {
 	public String borrarSocio(@PathVariable("id") Long id, Model model) {
 
 		Optional<Socio> sBorrar = servicio.findById(id);
-
-		if (sBorrar.isPresent ()) {
-			Socio socio = sBorrar.get();
-			servicio.delete(socio);
+		Socio socio = sBorrar.get();
+		
+		if (sBorrar.isPresent()) {	
+			if (servicioVenta.contarSociosEnVentas(socio) == 0) {
+				servicio.delete(socio);
+			} else {
+				return "redirect:/admin/socios/?error=true";
+			}
 		}
 
 		return "redirect:/admin/socios/";
 	}
-	
-	
-	
-	
+
 	@PostMapping("/socios/add/submit/")
 	public String addSocio(@ModelAttribute("socio") Socio socio, Model model) {
-		
-		for(Socio s : servicio.findAll()) {
-			if(s.getUsername().equals(socio.getUsername())) {
+
+		for (Socio s : servicio.findAll()) {
+			if (s.getUsername().equals(socio.getUsername())) {
 				model.addAttribute("error", "El nombre de usuario no está disponible, introduzca otro distinto");
-	            return "formularioSocios";
+				return "formularioSocios";
 			}
-			if(s.getDni().equals(socio.getDni())) {
+			if (s.getDni().equals(socio.getDni())) {
 				model.addAttribute("error", "Lo sentimos ese DNI ya existe");
-	            return "formularioSocios";
+				return "formularioSocios";
 			}
 		}
-		
+
 		socio.setPassword(passwordEncoder.encode(socio.getPassword()));
-	    servicio.save(socio);
+		servicio.save(socio);
 		return "successAddSocio";
 	}
 
 	@PostMapping("/admin/socios/add/submit/")
 	public String addSocioAdmin(@ModelAttribute("socio") Socio socio, Model model) {
-		
-		
-		for(Socio s : servicio.findAll()) {
-			if(s.getUsername().equals(socio.getUsername())) {
+
+		for (Socio s : servicio.findAll()) {
+			if (s.getUsername().equals(socio.getUsername())) {
 				model.addAttribute("error", "El nombre de usuario no está disponible, introduzca otro distinto");
-	            return "admin/formularioSocios-admin";
+				return "admin/formularioSocios-admin";
 			}
-			if(s.getDni().equals(socio.getDni())) {
+			if (s.getDni().equals(socio.getDni())) {
 				model.addAttribute("error", "Lo sentimos ese DNI ya existe");
-	            return "admin/formularioSocios-admin";
+				return "admin/formularioSocios-admin";
 			}
 		}
-		
+
 		socio.setPassword(passwordEncoder.encode(socio.getPassword()));
-	    servicio.save(socio);
-	    return "redirect:/admin/socios/";
+		servicio.save(socio);
+		return "redirect:/admin/socios/";
 	}
-	
+
 	@PostMapping("/admin/socios/editar/submit/")
 	public String editarSocioAdmin(@ModelAttribute("socio") Socio socio, Model model) {
 
 		servicio.edit(socio);
 		return "redirect:/admin/socios/";
 	}
-
 
 	@PostMapping("/admin/socios/search/")
 	public String searchSocioAdmin(@ModelAttribute("searchForm") SearchBean searchBean, Model model) {

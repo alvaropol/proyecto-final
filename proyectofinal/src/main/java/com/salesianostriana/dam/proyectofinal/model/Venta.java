@@ -28,42 +28,38 @@ import lombok.ToString;
 @Builder
 @Entity
 public class Venta {
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	private LocalDate fechaVenta;
 	private double precioTotal;
-	private double descuento; //El descuento toma un valor u otro dependiendo del dinero que se haya gastado el socio en la tienda.
-	
+	private double descuento; // El descuento toma un valor u otro dependiendo del dinero que se haya gastado
+								// el socio en la tienda.
+
 	@ManyToOne
 	private Socio socio;
-	
-	//Métodos HELPER. En caso de que queramos añadir/borrar un socio de una venta a la que esté asociada.
-	
+
+	// Métodos HELPER. En caso de que queramos añadir/borrar un socio de una venta a
+	// la que esté asociada.
+
 	public void addSocioVenta(Socio s) {
-		this.socio=s;
+		this.socio = s;
 		s.getListaVentas().add(this);
 	}
-	
+
 	public void removeSocioFromVenta(Socio s) {
 		s.getListaVentas().remove(this);
-		this.socio=null;
+		this.socio = null;
 	}
-	
+
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@Builder.Default
-	@OneToMany(
-			mappedBy="venta", 
-			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL,
-			orphanRemoval = true
-	)
+	@OneToMany(mappedBy = "venta", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<LineaVenta> lineasVenta = new ArrayList<>();
-	
-	
+
 	public List<LineaVenta> getLineasVentas() {
 		return Collections.unmodifiableList(lineasVenta);
 	}
@@ -74,46 +70,31 @@ public class Venta {
 		l.setVenta(this);
 		this.lineasVenta.add(l);
 	}
-	
+
 	public Long generacionId() {
-		if(this.lineasVenta.size()>0) {
-			return this.lineasVenta.stream()
-					.map(LineaVenta::getLineaventaPK)
-					.map(LineaVentaPK::getLineaventa_id)
-					.max(Comparator.naturalOrder())
-					.orElse(01l)+1l;
-		}else {
+		if (this.lineasVenta.size() > 0) {
+			return this.lineasVenta.stream().map(LineaVenta::getLineaventaPK).map(LineaVentaPK::getLineaventa_id)
+					.max(Comparator.naturalOrder()).orElse(01l) + 1l;
+		} else {
 			return 1L;
 		}
 	}
-	
+
 	public void removeLineaVenta(LineaVenta l) {
 		this.lineasVenta.remove(l);
 		l.setVenta(null);
-		
+
 	}
-	
+
 	public void removeLineaVenta(long venta_id) {
 		Optional<LineaVenta> l = lineasVenta.stream()
-				.filter(lineaventa -> lineaventa.getLineaventaPK().getVenta_id() == this.id && lineaventa.getLineaventaPK().getVenta_id() == venta_id)
+				.filter(lineaventa -> lineaventa.getLineaventaPK().getVenta_id() == this.id
+						&& lineaventa.getLineaventaPK().getVenta_id() == venta_id)
 				.findFirst();
-
 
 		if (l.isPresent())
 			removeLineaVenta(l.get());
 
 	}
-
-	public long getLineaVentaIdNextval() {
-		if (this.lineasVenta.size() > 0) {
-			return this.lineasVenta.stream()
-					.map(LineaVenta::getLineaventaPK)
-					.map(LineaVentaPK::getLineaventa_id)
-					.max(Comparator.naturalOrder())
-					.orElse(0l) + 1l;
-		} else
-			return 1l;
-	}
-
 
 }

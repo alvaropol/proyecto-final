@@ -48,6 +48,13 @@
 						<div class="col-12">
 							<div class="card bg-white shadow-2-strong">
 								<div class="card-body">
+									<div class="alert alert-warning alert-dismissible show" role="alert"
+											th:if="${param.error}">
+											<span style="font-family: Arial;">No puedes eliminar un socio que está asociado a una/s venta/s
+											</span>
+											<button type="button" class="btn-close" data-bs-dismiss="alert"
+												aria-label="Close"></button>
+										</div>
 									<div class="table-responsive">
 										<table class="table table-red table-borderless mb-0 text-dark">
 											<thead>

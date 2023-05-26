@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -60,9 +59,9 @@ public class Socio implements UserDetails {
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy = "socio", 
-	           fetch = FetchType.EAGER,
-	           cascade = CascadeType.REMOVE, //Si se elimina un socio, todas sus ventas también se borraran. (Ya que no nos interesa tener las compras de un antiguo socio, por el espacio de la base de datos)
-	           orphanRemoval = true)
+	           fetch = FetchType.EAGER)/*,
+	           cascade = CascadeType.REMOVE, 
+	           orphanRemoval = true)*/
 	@Builder.Default
 	private List<Venta> listaVentas = new ArrayList<>();
 	
